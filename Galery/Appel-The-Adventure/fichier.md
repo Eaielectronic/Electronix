@@ -23,7 +23,7 @@ Ajout du magasin et des itemes. Correction de bug liés au plans.
 
 **10 juillet**
 
-Configuration du cloud et des joueur connecté.
+Configuration du cloud et des joueurs connectés.
 ___
 ***5 juillet**
 Première version bétâ du jeu Appel The Adventure.
