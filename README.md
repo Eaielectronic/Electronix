@@ -1,5 +1,3 @@
----
-
 **About Us**
 
 Welcome to Electronix! Our passion is to create unique games by remixing Scratch classics. With our knowledge of JavaScript and HTML, we add captivating features to deliver an exceptional gaming experience.
