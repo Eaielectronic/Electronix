@@ -1,32 +1,28 @@
+---
 
+**About Us**
+
+Welcome to Electronix! Our passion is to create unique games by remixing Scratch classics. With our knowledge of JavaScript and HTML, we add captivating features to deliver an exceptional gaming experience.
 
 ---
 
-**À propos de nous**
+**Our Creative Approach**
 
-Bienvenue chez Electronix ! Notre passion est de créer des jeux uniques en remixant des classiques de Scratch. Grâce à notre connaissance en JavaScript et HTML, nous ajoutons des fonctionnalités captivantes pour offrir une expérience de jeu exceptionnelle.
+1. **Custom Remix:** We take existing games and transform them into unique experiences. Whether it's improving the graphics, adding extra levels, or integrating game mechanics, we breathe new life into your favorite games.
+It's here: [Electronix](https://eaielectronic.github.io/Electronix/).
 
----
+3. **Technology:** Our team uses JavaScript and HTML. We bring interactive and dynamic features to our remixes. Whether it's for platformers, puzzles, or simulations, we take on any challenge.
 
-**Notre approche créative**
-
-1. **Remix personnalisé :** Nous prenons des jeux existants et les transformons en expériences uniques. Que ce soit en améliorant les graphismes, en ajoutant des niveaux supplémentaires ou en intégrant des mécanismes de jeu, nous donnons une nouvelle vie à vos jeux préférés.
-C'est ici : [Electronix](https://eaielectronic.github.io/Electronix/).
-
-3. **Technologie :** Notre équipe utilise JavaScript et HTML. Nous apportons des fonctionnalités interactives et dynamiques à nos remix. Que ce soit pour des jeux de plateforme, des énigmes ou des simulations, nous relevons tous les défis.
-
-4. **Engagement communautaire :** Nous aimons partager notre passion avec la communauté. Suivez-nous sur les réseaux sociaux pour découvrir nos dernières créations, astuces et tutoriels.
+4. **Community Engagement:** We love sharing our passion with the community. Follow us on social media to discover our latest creations, tips and tutorials.
 
 ---
 
-**Découvrez nos jeux**
+**Discover our games**
 
-- [Appel The Adventure](https://eaielectronic.github.io/Electronix/Galery/Appel-The-Adventure/) : Notre dernier remix!
+- [Appel The Adventure](https://eaielectronic.github.io/Electronix/Galery/Appel-The-Adventure/) : Our latest remix!
 
+**Contact us**
 
-**Contactez-nous**
-
-Vous avez une idée de jeu à remix ou souhaitez collaborer avec nous ? Contactez-nous dès aujourd'hui ! 
+Do you have an idea for a game to remix or want to collaborate with us? Contact us today!
 
 ---
-
