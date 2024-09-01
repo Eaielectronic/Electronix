@@ -25,4 +25,7 @@ Do you have an idea for a game to remix or want to collaborate with us? Contact 
 
 ---
 Copyright© Appel The Adventure© 
-Appel is not the same name as Appel The Adventure. Appel The Adventure© Tout droits réservés.
+Appel is not the same name as Appel The Adventure. Appel The Adventure© 
+Tout droits réservés.
+
+Appel is not Appel The Adventure.
