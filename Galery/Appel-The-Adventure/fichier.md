@@ -1,4 +1,7 @@
-**24 août**
+**1 septembre 2024**
+Ajout d'un nouveau mode de jeu pour mobile avec flêches.
+
+**24 août 2024**
 
 Ajout d'information dans le magasin. Correction de clones qui rendaient le jeu lent.
 
