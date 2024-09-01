@@ -32,4 +32,4 @@ ___
 Première version bétâ du jeu Appel The Adventure.
 ___
 Copyright© Appel The Adventure© Appel is not the same name as Appel The Adventure. Appel The Adventure©
-
+Tout droits réservés.
