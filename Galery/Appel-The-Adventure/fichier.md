@@ -1,3 +1,6 @@
+**7 septembembre**
+Correction de bug lié au mode en ligne avec niveaux personnels et comflie entre Editor et Load.
+
 **1 septembre 2024**
 Ajout d'un nouveau mode de jeu pour mobile avec flêches.
 
