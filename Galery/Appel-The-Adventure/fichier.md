@@ -1,4 +1,7 @@
-**7 septembembre**
+**8 septembre 2024**
+Correction de bug liée au sauvegarde de niveau.
+
+**7 septembembre 2024**
 Correction de bug lié au mode en ligne avec niveaux personnels et comflie entre Editor et Load.
 
 **1 septembre 2024**
