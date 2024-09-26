@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux Vidéo Collection Mode Appel-The-Adventure</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://cdn.pixabay.com/photo/2014/12/24/05/02/drop-of-water-578897_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .game-section {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .game-section img.icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+        .game-section img.game-image {
+            width: 400px; /* Agrandir l'image */
+            height: auto;
+            margin-left: 20px;
+        }
+        .game-details {
+            flex: 1;
+            text-align: left;
+        }
+        .download-btn {
+            background-color: #0F9D58;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .download-btnnon {
+            background-color: #9d0f0f;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .links a {
+            color: #0F9D58;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo_site.png" alt="Erreur">
+            <h1>Jeux Vidéo Collection</h1>
+        </div>
+        <div class="game-section">
+            <img src="../logo1.svg" alt="Icône du jeu" class="icon">
+            <div class="game-details">
+                
+                <h2>Appel The Adventure Modes</h2>
+                <h3>Ajouter des Modes</h3>
+                <br>
+                <p>Copier l'url pour Télécharger</p>
+                <br>
+                <h5>Official modes</h5>
+                <input type="text" id="lien" value="https://example.com" readonly>
+    <button onclick="copierLien()">Copier le lien</button>
+
+    <p id="message" style="color: green; margin-top: 20px;"></p>
+
+    <script>
+        function copierLien() {
+            var lien = document.getElementById("lien");
+            lien.select();
+            lien.setSelectionRange(0, 99999); // Pour les mobiles
+            document.execCommand("copy");
+
+            var message = document.getElementById("message");
+            message.textContent = "Lien copié dans le presse-papiers!";
+        }
+    </script>
+
+
+                <p>Nombre de téléchargements : <span id="downloadCount">0</span></p>
+            </div>
+            <img src="image1.png" alt="Image du jeu" class="game-image">
+        </div>
+        <div class="game-section">
+            <img src="logo1.svg" alt="Icône du jeu" class="icon">
+            <div class="game-details">
+                <h2>Level EATEN! - v0.12</h2>
+                <p>Indisponible</p>
+                <a class="download-btnnon" >Indisponible</a> 
+                <p>Nombre de téléchargements : <span id="downloadCount1">0</span></span></p>
+            </div>
+            <img src="image2.png" alt="Image du jeu" class="game-image">
+        </div>
+        <div class="links">
+            <a href="https://github.com/Eaielectronic">GitHub</a>
+            <a href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
+            <a href="https://turbowarp.org">TurboWarp</a>
+            <a href="https://eaielectronic.github.io/Electronix/">Desktop</a>
+            <a href="https://dedespo.com">Crédit</a>
+        </div>
+    </div>
+    <script>
+        // Connexion au serveur WebSocket
+        const socket = new WebSocket('ws://localhost:8010');
+    
+        // Mise à jour du nombre de téléchargements
+        socket.onmessage = function(event) {
+            try {
+                // Conversion du message reçu en JSON
+                const data = JSON.parse(event.data);
+                const key1 = data.key1;
+                const key2 = data.key2;
+                document.getElementById('downloadCount').textContent = key1;
+                document.getElementById('downloadCount1').textContent = key2;
+            } catch (error) {
+                console.error("Erreur lors du parsing JSON : ", error);
+            }
+        }
+        
+        // Envoi de "get_count" au serveur WebSocket lors de l'ouverture de la connexion
+        socket.onopen = function() {
+            socket.send('get_count');
+        };
+    </script>       
+</body>
+</html>
