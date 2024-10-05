@@ -66,10 +66,13 @@
             align-items: center;
             padding: 50px;
             background-color: #fff;
-            border-bottom: 5px solid #007bff;
+            
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
         
+        }
+        .pres{
+            border-bottom: 5px solid #000000;
+        }
         .text-content {
             flex: 1;
             margin-right: 20px;
@@ -115,7 +118,7 @@
             transform: scale(1.05);
         }
         .banner-img1 {
-            width: 200%;
+            width: 100%;
             height: auto;
             transition: transform 0.3s ease;
             border-radius: 10px;
@@ -166,7 +169,16 @@
             text-align: center;
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+        }
+        .links2 {
+            text-align: center;
+            
             text-decoration-color: #fff;
+        }
+        .links2:hover {
+            text-transform: scale(1.05);
+            color: #207900;
         }
         .links1 {
             text-align: center;
@@ -186,24 +198,66 @@
             text-decoration: none;
             margin-top: 20px;
         }
+        /* Section de la chaîne YouTube */
+/* Section de la chaîne YouTube */
+.youtube-section {
+    padding: 50px;
+    background-color: #fff;
+    text-align: center;
+    border-bottom: 5px solid #000000;
+}
+
+.youtube-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.youtube-link {
+    display: flex;
+    flex-direction: column; /* Placer le logo au-dessus du texte */
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.youtube-link:hover {
+    color: #ff0000; /* Changement de couleur au survol */
+}
+
+.youtube-logo {
+    width: 80px; /* Taille du logo YouTube */
+    height: auto;
+    margin-bottom: 10px; /* Espace entre le logo et le texte */
+    transition: transform 0.3s ease;
+}
+
+.youtube-logo:hover {
+    transform: scale(1.1); /* Légère animation au survol */
+}
+
+
     </style>
 </head>
 <body>
     <!-- En-tête avec titre et navigation -->
-    <header>
-        <div class="header-container">
+    <header style="border-bottom: 5px solid #000000;">
+        <div class="header-container" >
             <div class="images-container"> 
-                <img src="Titre.png" alt="Monde 1" class="banner-img1">
+                <a href="Galery/Appel-The-Adventure/"><img src="Titre.png" alt="Monde 1" class="banner-img1"></a>
             </div>
         </div>
     </header>
 
     <!-- Section de présentation avec image et texte -->
-    <section class="presentation">
+    <section class="presentation" style="border-bottom: 5px solid #000000;">
         <div class="text-content">
             <p>Dans <strong>Appel The Adventure</strong>, explorez des mondes fantastiques, affrontez des ennemis redoutables, et résolvez des énigmes captivantes. Développé avec TurboWarp, ce jeu offre une expérience fluide et immersive, en intégrant des fonctionnalités avancées comme le mode sombre, des modules personnalisés, et la compatibilité avec JavaScript pour un gameplay plus dynamique.</p>
             <p>Grâce aux extensions de TurboWarp, vous aurez accès à des fonctionnalités exclusives telles que l'utilisation des gamepads, la manipulation de texte, et bien plus encore pour vous immerger dans l'univers du jeu.</p>
-            <a href="#about" class="button">En savoir plus</a>
+            <a href="Galery/" class="button">En savoir plus</a>
         </div>
         <div class="image-content">
             <img src="Galery/image1.png" alt="Présentation du jeu" style="width: 100%; max-width: 600px;">
@@ -211,7 +265,7 @@
     </section>
 
     <!-- Ajout de plus d'images : Bande de screenshots -->
-    <section class="banner-images">
+    <section class="banner-images" style="border-bottom: 5px solid #000000;">
         <div class="images-container">
             <img src="img1.png" alt="Monde 1" class="banner-img">
             <img src="img2.png" alt="Monde 2" class="banner-img">
@@ -222,33 +276,38 @@
     </section>
 
     <!-- À propos du jeu avec images supplémentaires -->
-    <section id="about" class="about">
-        <div class="about-content">
+    <section id="about" class="about" style="border-bottom: 5px solid #000000;">
+        <div class="about-content" style="color: #787878;">
             <h2>- À propos du développement -</h2>
             <p>Nous aimons remixer des jeux existants créés avec Scratch ou en développer de nouveaux à partir de zéro. Cela nous permet d'explorer des idées uniques et d'améliorer continuellement nos compétences en programmation.</p>
             <p>Que ce soit en remixant ou en créant, nous cherchons toujours à offrir des jeux amusants et innovants. Merci à <a href="https://scratch.mit.edu/users/griffpatch/">Griffpatch</a> pour son inspiration !</p>
         </div>
         <div class="about-images">
-            <iframe src="https://scratch.mit.edu/users/griffpatch/" class="about-images"></iframe>
-            <img src="Galery/image8.png" alt="Debugging" class="about-img">
+            <a href="https://scratch.mit.edu/users/griffpatch/" target="_blank"><img src="grifp.png" alt="Griffpatch links" class="about-img"></a>
+           <a href="https://github.com/Eaielectronic" target="_blank"> <img src="git-d.png" alt="My count" class="about-img"></a>
         </div>
     </section>
     <!-- Vidéo de présentation -->
-    <section id="video" class="video-section">
-        <h2>Présentation Vidéo</h2>
-        <div class="video-container">
-            <iframe src="https://1drv.ms/v/c/30c845eebaf258fb/IQMU_0cXsoCjRZTUx-qQD5RSAbdx7eMUXRelNUlXfWtu5AY" width="600" height="400" frameborder="0" allowfullscreen></iframe>
+    <section id="youtube" class="youtube-section">
+         <h2 style="text-align: center;">Coder avec TurboWarp</h2>
+        <div class="youtube-container">
+            <!-- Lien vers la chaîne YouTube -->
+            <a href="https://www.youtube.com/@Craftelectron-qv2uj" target="_blank" class="youtube-link">
+                <!-- Logo de YouTube (tu peux utiliser une image locale ou un lien d'image) -->
+                <img src="logoy.png" alt="Logo YouTube" class="youtube-logo" style="text-align: center;">
+                <span>chaîne youtube : Craftelectron</span>
+            </a>
         </div>
     </section>
-
+    
     <!-- Liens externes -->
     <section id="links" class="links">
-        <h2>Liens Utiles</h2>
-        <div class="links-container">
+        <h2>Abouts</h2>
+        <div class="links2">
             <a class="links1" href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
             <a class="links1" href="https://turbowarp.org/">TurboWarp</a>
             <a class="links1" href="https://github.com/Eaielectronic">GitHub</a>
-            <a class="links1" href="https://raw.githubusercontent.com/Eaielectronic/Electronix/">Desktop</a>
+            <a class="links1" href="">Desktop</a>
             <a class="links1" href="#">Crédits</a>
         </div>
     </section>
