@@ -1,3 +1,7 @@
+
+**6 octobre**
+L'API sensing est corrigé : il est desormait possible d'appuier sur plusieurs boutons en même temps. Un inventaire a été ajouté et son bouton. Il est desormait possible de choisir le nombre de vies dans un niveau via l'inventaire.
+
 **8 septembre 2024**
 Correction de bug liée au sauvegarde de niveau.
 
