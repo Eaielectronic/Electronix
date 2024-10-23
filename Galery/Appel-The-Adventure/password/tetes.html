@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Réinitialisation de Mot de Passe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .toggle-password {
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        .error::before {
+            content: "❌ ";
+            font-size: 1.5rem;
+        }
+        #checkmarkImage {
+            display: none; /* Cacher l'image par défaut */
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Réinitialiser le Mot de Passe</h2>
+    <form id="resetForm">
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
+
+        <div class="form-group">
+            <input type="password" id="pass1" placeholder="Mot de Passe Unique" required>
+            <span class="toggle-password" onclick="togglePasswordVisibility('pass1')">👁️</span>
+        </div>
+
+        <div class="form-group">
+            <input type="password" id="newPassword" placeholder="Nouveau Mot de Passe" required>
+            <span class="toggle-password" onclick="togglePasswordVisibility('newPassword')">👁️</span>
+        </div>
+
+        <div class="form-group">
+            <input type="password" id="confirmPassword" placeholder="Confirmer le Nouveau Mot de Passe" required>
+            <span class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">👁️</span>
+        </div>
+
+        <button type="submit">Envoyer</button>
+    </form>
+    <div id="message"></div>
+    <img id="checkmarkImage" src="tech.png" alt="Succès">
+
+    <script>
+        const form = document.getElementById('resetForm');
+        const messageDiv = document.getElementById('message');
+        const checkmarkImage = document.getElementById('checkmarkImage');
+        const ws = new WebSocket('ws://localhost:1234'); // Assurez-vous que le serveur WebSocket est correctement configuré
+
+        // Connexion WebSocket
+        ws.onopen = () => {
+            console.log('WebSocket connecté');
+        };
+
+        // Réception des messages du serveur (chaîne simple "ok" ou "Ref")
+        ws.onmessage = (event) => {
+            const response = event.data;  // La réponse est une simple chaîne "ok" ou "Ref"
+            if (response === 'ok') {
+                showSuccessMessage('Mot de passe réinitialisé avec succès !');
+                form.reset(); // Réinitialiser le formulaire après le succès
+            } else if (response === 'Ref') {
+                showErrorMessage('Échec de la réinitialisation. Veuillez réessayer.');
+            } else {
+                showErrorMessage('Réponse inattendue du serveur.');
+            }
+        };
+
+        // Fonction pour afficher/masquer les mots de passe
+        function togglePasswordVisibility(id) {
+            const input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+
+        // Validation du formulaire
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            const email = document.getElementById('email').value;
+            const pass1 = document.getElementById('pass1').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validation des mots de passe
+            if (newPassword !== confirmPassword) {
+                showErrorMessage('Les mots de passe ne correspondent pas.');
+                return;
+            }
+
+            const data = JSON.stringify({
+                email: email,
+                pass1: pass1,
+                pass: newPassword,
+                type: "password"
+            });
+
+            ws.send(data); // Envoie les données au serveur
+        });
+
+        // Fonction pour afficher un message de succès
+        function showSuccessMessage(message) {
+            // Cacher le formulaire
+            form.style.display = 'none';
+
+            // Afficher l'image et le message
+            checkmarkImage.style.display = 'block'; // Rendre l'image visible en cas de succès
+            messageDiv.innerHTML = message;
+            messageDiv.className = 'success';
+            messageDiv.style.opacity = 1; // Afficher le message
+        }
+
+        // Fonction pour afficher un message d'erreur
+        function showErrorMessage(message) {
+            // Cacher l'image en cas d'erreur
+            checkmarkImage.style.display = 'none';
+            messageDiv.innerHTML = message;
+            messageDiv.className = 'error';
+            messageDiv.style.opacity = 1; // Afficher le message d'erreur
+        }
+    </script>
+</body>
+</html>
