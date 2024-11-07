@@ -133,7 +133,14 @@
     <h1>Introduction à JSON (JavaScript Object Notation)</h1>
     <p>Comprendre et manipuler JSON dans vos applications.</p>
 </header>
-
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('main-content');
+        sidebar.classList.toggle('active');
+        content.classList.toggle('shifted');
+    }
+</script>
 <div class="container">
 
     <section id="objectifs">
@@ -239,14 +246,17 @@ print(data)
         </code>
     </section>
 <section>
-    <div class="sidebar">
-        <h2>Lignes de code</h2>
-        <a href="#ajout-modification">1. Ajout et modification</a>
-        <a href="#suppression">2. Suppression de clés</a>
-        <a href="#recherche">3. Recherche de clés et valeurs</a>
-        <a href="#parcours">4. Parcours des clés et valeurs</a>
-        <a href="#conversion">5. Conversion JSON et String</a>
-    </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <h2>Lignes de code</h2>
+    <a href="#ajout-modification">1. Ajout et modification</a>
+    <a href="#suppression">2. Suppression de clés</a>
+    <a href="#recherche">3. Recherche de clés et valeurs</a>
+    <a href="#parcours">4. Parcours des clés et valeurs</a>
+    <a href="#conversion">5. Conversion JSON et String</a>
+</div>
     <div class="container">
         <h1>Manipulation de JSON en JavaScript et Python</h1>
     
