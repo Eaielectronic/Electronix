@@ -133,14 +133,7 @@
     <h1>Introduction à JSON (JavaScript Object Notation)</h1>
     <p>Comprendre et manipuler JSON dans vos applications.</p>
 </header>
-<script>
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('main-content');
-        sidebar.classList.toggle('active');
-        content.classList.toggle('shifted');
-    }
-</script>
+
 <div class="container">
 
     <section id="objectifs">
@@ -160,7 +153,7 @@
 
     <section id="pourquoi-json">
         <h2>Pourquoi utiliser JSON ?</h2>
-        <button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
+        
         <ul>
             <li><strong>Simplicité</strong> : JSON est facile à comprendre et à écrire.</li>
             <li><strong>Portabilité</strong> : JSON est indépendant de la plateforme.</li>
@@ -249,6 +242,15 @@ print(data)
 <section>
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
+    <script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('main-content');
+        sidebar.classList.toggle('active');
+        content.classList.toggle('shifted');
+    }
+</script>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
     <h2>Lignes de code</h2>
     <a href="#ajout-modification">1. Ajout et modification</a>
     <a href="#suppression">2. Suppression de clés</a>
