@@ -1,140 +1,193 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="Stand.png" type="image/x-icon">
-    <link rel="shortcut icon" href="Stand.png" type="image/x-icon">
-    <title>Jeux Vidéo Collection </title>
+    <title>Jeux Vidéo Collection</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231" crossorigin="anonymous"></script>
+    
     <style>
+        /* Style global */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
-            margin: 0;
             color: #333;
-            background-color: #f4f4f4;
-            background: url('back.png') no-repeat center;
-            background-size: auto;
+            background: url('back.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
+
+        /* Container principal */
         .container {
             max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            padding: 25px;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
+
+        /* En-tête */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
+
         .header img {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 10px;
         }
+
         .header h1 {
-            font-size: 24px;
-            margin: 0;
+            font-size: 1.8em;
+            color: #222;
+            margin-left: 20px;
         }
+
+        /* Section de chaque jeu */
         .game-section {
             display: flex;
             align-items: center;
-            margin: 20px 0;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
         }
+
         .game-section img.icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             margin-right: 20px;
+            border-radius: 8px;
         }
+
         .game-section img.game-image {
-            width: 400px; /* Agrandir l'image */
+            width: 350px;
             height: auto;
             margin-left: 20px;
+            border-radius: 8px;
         }
+
         .game-details {
             flex: 1;
             text-align: left;
+            margin-right: 20px;
         }
+
+        .game-details h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .game-details p {
+            font-size: 1em;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Boutons de téléchargement */
+        .download-btn, .download-btnnon {
+            padding: 12px 20px;
+            color: #fff;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
         .download-btn {
             background-color: #0F9D58;
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            margin: 5px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+
         .download-btnnon {
             background-color: #9d0f0f;
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            margin: 5px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+
+        .download-btn:hover, .download-btnnon:hover {
+            opacity: 0.9;
+        }
+
+        /* Liens additionnels */
         .links {
-            margin-top: 20px;
             display: flex;
             justify-content: space-around;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 1em;
         }
+
         .links a {
             color: #0F9D58;
             text-decoration: none;
-            font-size: 14px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
         }
     </style>
-   
 </head>
 <body>
     <div class="container">
+        <!-- En-tête -->
         <div class="header">
-            <img src="logo_site.png" alt="Erreur">
+            <img src="logo_site.png" alt="Logo du site">
             <h1>Jeux Vidéo Collection</h1>
         </div>
+
+        <!-- Section du jeu 1 -->
         <div class="game-section">
             <img src="logo.svg" alt="Icône du jeu" class="icon">
             <div class="game-details">
-                
-                <h2>Appel The Adventure -v-beta-</h2>
-                <p>Un jeu de plateforme sympatique avec de très belles textures</p>
+                <h2>Appel The Adventure - v-beta</h2>
+                <p>Un jeu de plateforme sympathique avec de très belles textures</p>
                 <a href="Appel-The-Adventure" class="download-btn" id="sendButton">Télécharger</a>
                 <p>Nombre de téléchargements : <span id="downloadCount">0</span></p>
             </div>
             <img src="image1.png" alt="Image du jeu" class="game-image">
         </div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
-     crossorigin="anonymous"></script>
-<!-- Block div -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2631008307109231"
-     data-ad-slot="4554212931"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
+        <!-- Publicité -->
+        <div class="ad-section">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2631008307109231"
+                 data-ad-slot="4554212931"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- Section du jeu 2 -->
         <div class="game-section">
             <img src="logo1.svg" alt="Icône du jeu" class="icon">
             <div class="game-details">
                 <h2>Level EATEN! - v0.12</h2>
                 <p>Indisponible</p>
-                <a class="download-btnnon" >Indisponible</a> 
-                <p>Nombre de téléchargements : <span id="downloadCount1">0</span></span></p>
+                <a class="download-btnnon">Indisponible</a>
+                <p>Nombre de téléchargements : <span id="downloadCount1">0</span></p>
             </div>
             <img src="image2.png" alt="Image du jeu" class="game-image">
         </div>
+
+        <!-- Liens additionnels -->
         <div class="links">
             <a href="https://github.com/Eaielectronic">GitHub</a>
             <a href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
@@ -143,28 +196,23 @@
             <a href="https://dedespo.com">Crédit</a>
         </div>
     </div>
+
+    <!-- Script WebSocket pour le comptage des téléchargements -->
     <script>
-        // Connexion au serveur WebSocket
         const socket = new WebSocket('ws://localhost:8010');
-    
-        // Mise à jour du nombre de téléchargements
         socket.onmessage = function(event) {
             try {
-                // Conversion du message reçu en JSON
                 const data = JSON.parse(event.data);
-                const key1 = data.key1;
-                const key2 = data.key2;
-                document.getElementById('downloadCount').textContent = key1;
-                document.getElementById('downloadCount1').textContent = key2;
+                document.getElementById('downloadCount').textContent = data.key1 || 0;
+                document.getElementById('downloadCount1').textContent = data.key2 || 0;
             } catch (error) {
                 console.error("Erreur lors du parsing JSON : ", error);
             }
-        }
+        };
         
-        // Envoi de "get_count" au serveur WebSocket lors de l'ouverture de la connexion
         socket.onopen = function() {
             socket.send('get_count');
         };
-    </script>       
+    </script>
 </body>
 </html>
