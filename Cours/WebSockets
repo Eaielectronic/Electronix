@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours : Introduction aux WebSockets</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+            background-color: #f4f4f4;
+            justify-content: center;
+        }
+
+        header {
+            background-color: #4c8eaf;
+            color: white;
+            text-align: center;
+            padding: 2em;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #4c99af;
+            margin-top: 1.5em;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 5px;
+            display: block;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            border-radius: 5px;
+            color: #d63384;
+        }
+
+        /* Styles pour le panneau latéral */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -220px;
+            width: 200px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            transition: left 0.3s ease;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        #sidebar h2 {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            color: #fff;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            margin: 10px 0;
+        }
+
+        #sidebar ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        /* Bouton d'ouverture de la barre latérale */
+        #toggleButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #4c8eaf;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 1100;
+            border-radius: 5px;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            max-width: 800px;
+            align-items: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .links1 {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .links1:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Introduction aux WebSockets</h1>
+    <p>Comprendre le fonctionnement des WebSockets et leur utilisation dans les applications web.</p>
+</header>
+
+<!-- Panneau latéral -->
+<div id="sidebar">
+    <h2><br>Plan du cours</h2>
+    <ul>
+        <br>
+        <li>
+        </li>
+        <li><a href="#historique">Historique des WebSockets</a></li>
+        <li><a href="#fonctionnement">Fonctionnement des WebSockets</a></li>
+        <li><a href="#avantages">Avantages et cas d'utilisation</a></li>
+        <li><a href="#mise-en-pratique">Mise en pratique</a>
+            <ul>
+                <li><a href="#serveur-python">Serveur WebSocket en Python</a></li>
+                <li><a href="#client-js">Client WebSocket en JavaScript</a></li>
+                <li><a href="#test">Tester la connexion</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!-- Bouton d'ouverture du panneau latéral -->
+<button id="toggleButton">☰ Menu</button>
+
+<!-- Contenu principal -->
+<div class="container content" style="align-items: center;">
+    <section id="historique">
+        <h2>Historique des WebSockets</h2>
+        <p>
+            Le protocole WebSocket a été introduit en 2008 et standardisé par l'IETF en 2011. Avant cela, les
+            applications web reposaient principalement sur le protocole HTTP pour la communication, qui fonctionnait 
+            en mode requête-réponse. WebSocket est conçu pour permettre une communication en temps réel plus efficace, 
+            ouvrant de nouvelles possibilités pour les applications interactives.
+        </p>
+    </section>
+    <section></section>
+        <h1>Introduction</h1>
+        <p>
+            WebSocket est un protocole de communication bidirectionnel, full-duplex, conçu pour fonctionner sur une connexion 
+            TCP, ce qui permet un échange de données en temps réel entre un client (souvent un navigateur) et un serveur. 
+            Contrairement au modèle traditionnel HTTP, où chaque requête du client nécessite une réponse du serveur 
+            (modèle de requête-réponse), WebSocket établit une connexion unique et persistante, permettant au client et
+             au serveur de s’envoyer des messages à tout moment.
+        </p>
+    </section>
+
+    <section id="fonctionnement">
+        <h2>Fonctionnement des WebSockets</h2>
+        <p><br>
+            Le protocole WebSocket commence par une négociation via une requête HTTP standard, appelée handshake. Une fois la connexion établie, celle-ci reste ouverte, permettant un échange continu de messages entre le client et le serveur. Voici les principales étapes :
+<br>
+    <strong><em>Handshake HTTP :</em> </strong>
+    <ul>
+        <li>La connexion WebSocket est initiée par une requête HTTP (avec l'en-tête Upgrade).</li>
+        <li>Si le serveur accepte la demande, il répond avec une mise à niveau (HTTP 101 Switching Protocols), transformant ainsi la connexion HTTP en une connexion WebSocket.</li>
+    </ul>
+    <strong><em>Communication bidirectionnelle :</em> </strong>
+    <ul>
+        <li>Une fois la connexion établie, le client et le serveur peuvent envoyer et recevoir des messages de manière asynchrone et bidirectionnelle.</li>
+        <li>Les messages sont encodés en trames (frames), ce qui permet d'envoyer de petits segments de données au lieu d’un gros paquet, réduisant ainsi la latence.</li>
+    </ul>
+   <strong><em>Fermeture de la connexion :</em> </strong> 
+   <ul>
+    <li>La connexion peut être fermée par le client ou le serveur en envoyant une trame de fermeture (Close frame), suivie d'un code de statut indiquant la raison.</li>
+    
+</ul>
+        </p>
+    </section>
+
+    <section id="avantages">
+        <h2> Avantages et inconvénients de WebSocket</h2>
+        <h4>Avantages :</h4>
+    <ul>
+        <li><strong>Temps réel :</strong> La connexion persistante permet des mises à jour instantanées, idéales pour des applications de chat, jeux en ligne, et tableaux de bord.</li>
+        <li><strong>Latence faible :</strong> Étant donné que la connexion est permanente, il n’y a pas besoin de créer de nouvelles connexions pour chaque interaction.</li>
+        <li><strong>Communication bidirectionnelle :</strong> Contrairement à HTTP, WebSocket permet un flux d’informations dans les deux directions.</li>
+    </ul>
+
+    <h4>Inconvénients :</h4>
+    <ul>
+        <li><strong>Overhead initial :</strong> La phase de handshake prend quelques millisecondes de plus.</li>
+        <li><strong>Support limité :</strong> Bien que WebSocket soit largement pris en charge, certains pare-feux ou proxy peuvent bloquer les connexions WebSocket.</li>
+        <li><strong>Complexité :</strong> Les messages doivent être gérés dans les deux directions, nécessitant un traitement asynchrone et la gestion de plusieurs connexions.</li>
+    </ul>
+    </section>
+<section>
+    <h2>Comparaison WebSocket vs HTTP</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Aspect</th>
+            <th>WebSocket</th>
+            <th>HTTP</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Connexion</td>
+            <td>Persistante</td>
+            <td>Fermée après chaque requête</td>
+        </tr>
+        <tr>
+            <td>Latence</td>
+            <td>Faible, connexion unique</td>
+            <td>Haute, chaque requête nécessite un nouvel échange</td>
+        </tr>
+        <tr>
+            <td>Mode de communication</td>
+            <td>Bidirectionnel, full-duplex</td>
+            <td>Requête-réponse, unidirectionnel</td>
+        </tr>
+        <tr>
+            <td>Cas d’utilisation</td>
+            <td>Chat, jeux, notifications, flux de données</td>
+            <td>API REST, chargement de pages</td>
+        </tr>
+    </tbody>
+</table>
+</section>
+    <section id="mise-en-pratique">
+        <h2>Mise en pratique</h2>
+        
+        <h3 id="serveur-python">Créer un serveur WebSocket avec Python</h3>
+        <p>Exemple de code pour un serveur WebSocket avec la bibliothèque <code>websockets</code> en Python.</p>
+        <pre><code>import asyncio
+import websockets
+
+async def serveur(websocket, path):
+    async for message in websocket:
+        await websocket.send(f"Message reçu: {message}")
+
+start_server = websockets.serve(serveur, "localhost", 12345)
+
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()</code></pre>
+
+        <h3 id="client-js">Créer un client WebSocket avec JavaScript</h3>
+        <p>Code d'exemple pour un client WebSocket en JavaScript.</p>
+        <pre><code>// Connexion WebSocket
+const socket = new WebSocket("ws://localhost:12345");
+
+socket.onopen = () => {
+    socket.send("Bonjour serveur");
+};
+
+socket.onmessage = (event) => {
+    console.log("Message reçu: ", event.data);
+};
+
+socket.onclose = () => {
+    console.log("Connexion fermée");
+};</code></pre>
+
+        <h3 id="test">Tester la connexion</h3>
+        <p>
+            Exécutez le serveur Python, puis ouvrez le fichier client dans un navigateur pour voir les messages échangés.
+        </p>
+    </section>
+</div>
+
+<footer>
+    <p>Cours WebSocket &copy; 2024</p>
+    <a class="links1" href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
+    <a class="links1" href="https://turbowarp.org/">TurboWarp</a>
+    <a class="links1" href="https://github.com/Eaielectronic">GitHub</a>
+</footer>
+
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const toggleButton = document.getElementById("toggleButton");
+
+    // Fonction pour ouvrir/fermer le panneau latéral
+    toggleButton.onclick = function() {
+        if (sidebar.style.left === "-220px") {
+            sidebar.style.left = "0";
+        } else {
+            sidebar.style.left = "-220px";
+        }
+    };
+
+    // Fermer la barre latérale si on clique en dehors
+    document.addEventListener('click', function(event) {
+        if (!sidebar.contains(event.target) && event.target !== toggleButton) {
+            sidebar.style.left = "-220px";
+        }
+    });
+</script>
+
+</body>
+</html>
