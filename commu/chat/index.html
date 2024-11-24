@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+        }
+        .messages div {
+            margin-bottom: 0.5rem;
+        }
+        .messages .user {
+            font-weight: bold;
+            color: #333;
+        }
+        .input-container {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #ccc;
+        }
+        .input-container input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 0.5rem;
+        }
+        .input-container button {
+            padding: 0.8rem;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-container button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chat de Programmation</h1>
+    </header>
+    <div class="chat-container">
+        <div class="messages" id="messages"></div>
+        <div class="input-container">
+            <input type="text" id="message-input" placeholder="Tapez votre message">
+            <button id="send-button">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        async function fetchMessages() {
+            const response = await fetch("http://localhost:5000/api/messages");
+            const messages = await response.json();
+            const messagesContainer = document.getElementById("messages");
+            messagesContainer.innerHTML = ""; // Effacer les anciens messages
+            messages.forEach(msg => {
+                const messageDiv = document.createElement("div");
+                messageDiv.innerHTML = `<span class="user">${msg.user}:</span> ${msg.text}`;
+                messagesContainer.appendChild(messageDiv);
+            });
+        }
+
+        async function sendMessage() {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value;
+            if (!message) return;
+
+            await fetch("http://localhost:5000/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ user: "Utilisateur", text: message })
+            });
+
+            messageInput.value = "";
+            fetchMessages(); // Recharger les messages
+        }
+
+        document.getElementById("send-button").addEventListener("click", sendMessage);
+        document.getElementById("message-input").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") sendMessage();
+        });
+
+        // Charger les messages au démarrage
+        fetchMessages();
+        setInterval(fetchMessages, 5000); // Recharger les messages toutes les 5 secondes
+    </script>
+</body>
+</html>

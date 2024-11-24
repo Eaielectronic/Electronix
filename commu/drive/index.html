@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Collaboratif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #4caf50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        #upload-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input[type="file"] {
+            margin-bottom: 1rem;
+        }
+        button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #388e3c;
+        }
+        #file-list {
+            margin-top: 2rem;
+        }
+        .file-item {
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>Drive Collaboratif</header>
+    <div id="upload-container">
+        <h2>Partagez vos fichiers</h2>
+        <form id="upload-form">
+            <input type="file" id="file" required>
+            <button type="submit">Téléverser</button>
+        </form>
+        <div id="file-list"></div>
+    </div>
+    <script>
+        const uploadForm = document.getElementById('upload-form');
+        const fileList = document.getElementById('file-list');
+
+        uploadForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('file');
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                const fileItem = document.createElement('div');
+                fileItem.textContent = fileName;
+                fileItem.classList.add('file-item');
+                fileList.appendChild(fileItem);
+                fileInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

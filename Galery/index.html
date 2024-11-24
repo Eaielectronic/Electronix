@@ -21,11 +21,55 @@
             color: #333;
             background: url('back.png') no-repeat center center fixed;
             background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
             margin: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            z-index: 1000;
+            transition: top 0.3s ease; /* Transition fluide pour l'apparition/disparition */
+        }
+
+        .navbar img {
+            width: 180px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar img:hover {
+            transform: scale(1.2);
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+            gap: 15px;
+            flex: 1;
+            justify-content: space-evenly;
+        }
+
+        .navbar a {
+            color: rgb(14, 174, 36);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: rgb(98, 255, 0);
+            transform: scale(1.2);
         }
 
         /* Container principal */
@@ -33,32 +77,12 @@
             max-width: 800px;
             background-color: #fff;
             padding: 25px;
-            margin: 20px;
+            margin: 100px auto; /* Centre le rectangle blanc */
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* En-tête */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-
-        .header img {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-        }
-
-        .header h1 {
-            font-size: 1.8em;
-            color: #222;
-            margin-left: 20px;
-        }
-
-        /* Section de chaque jeu */
+        /* Section de jeu */
         .game-section {
             display: flex;
             align-items: center;
@@ -98,7 +122,7 @@
             line-height: 1.6;
         }
 
-        /* Boutons de téléchargement */
+        /* Boutons */
         .download-btn, .download-btnnon {
             padding: 12px 20px;
             color: #fff;
@@ -145,74 +169,54 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+        <a href="../index.html"><img src="../Titre.png" alt="Logo"></a>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#links">Membre</a></li>
+            <li><a href="Galery/index.html">Play</a></li>
+            <li><a href="">Test</a></li>
+        </ul>
+    </div>
+
+    <!-- Container principal -->
     <div class="container">
-        <!-- En-tête -->
         <div class="header">
-            <img src="logo_site.png" alt="Logo du site">
+            <img src="logo_site.png" alt="Logo du site" style="height: 30px;">
             <h1>Jeux Vidéo Collection</h1>
         </div>
-
-        <!-- Section du jeu 1 -->
         <div class="game-section">
             <img src="logo.svg" alt="Icône du jeu" class="icon">
             <div class="game-details">
                 <h2>Appel The Adventure - v-beta</h2>
-                <p>Un jeu de plateforme sympathique avec de très belles textures</p>
-                <a href="Appel-The-Adventure" class="download-btn" id="sendButton">Voir</a>
-                <p>Nombre de téléchargements : <span id="downloadCount">0</span></p>
+                <p>Un jeu de plateforme sympathique avec de très belles textures.</p>
+                <a href="Appel-The-Adventure/index.html" class="download-btn">Voir</a>
             </div>
             <img src="image1.png" alt="Image du jeu" class="game-image">
         </div>
-
-        <!-- Publicité -->
-        <div class="ad-section">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2631008307109231"
-                 data-ad-slot="4554212931"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <!-- Section du jeu 2 -->
-        <div class="game-section">
-            <img src="logo1.svg" alt="Icône du jeu" class="icon">
-            <div class="game-details">
-                <h2>Level EATEN! - v0.12</h2>
-                <p>Indisponible</p>
-                <a class="download-btnnon">Indisponible</a>
-                <p>Nombre de téléchargements : <span id="downloadCount1">0</span></p>
-            </div>
-            <img src="image2.png" alt="Image du jeu" class="game-image">
-        </div>
-
-        <!-- Liens additionnels -->
         <div class="links">
             <a href="https://github.com/Eaielectronic">GitHub</a>
             <a href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
             <a href="https://turbowarp.org">TurboWarp</a>
             <a href="https://eaielectronic.github.io/Electronix/">Desktop</a>
-            <a href="https://dedespo.com">Crédit</a>
+            <a href="../index.html">Crédit</a>
         </div>
     </div>
 
-    <!-- Script WebSocket pour le comptage des téléchargements -->
     <script>
-        const socket = new WebSocket('ws://localhost:8010');
-        socket.onmessage = function(event) {
-            try {
-                const data = JSON.parse(event.data);
-                document.getElementById('downloadCount').textContent = data.key1 || 0;
-                document.getElementById('downloadCount1').textContent = data.key2 || 0;
-            } catch (error) {
-                console.error("Erreur lors du parsing JSON : ", error);
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-80px"; // Cache la navbar
+            } else {
+                navbar.style.top = "0"; // Affiche la navbar
             }
-        };
-        
-        socket.onopen = function() {
-            socket.send('get_count');
-        };
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
+        });
     </script>
 </body>
 </html>

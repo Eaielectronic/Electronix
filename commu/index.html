@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion ou Création de Compte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        .toggle-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .toggle-link a {
+            color: #333;
+            text-decoration: none;
+        }
+        .toggle-link a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <!-- Formulaire de Connexion -->
+        <form id="login-form">
+            <h2>Connexion</h2>
+            <label for="login-email">Adresse e-mail</label>
+            <input type="email" id="login-email" placeholder="Votre e-mail" required>
+            <label for="login-password">Mot de passe</label>
+            <input type="password" id="login-password" placeholder="Votre mot de passe" required>
+            <button type="submit">Se connecter</button>
+            <div class="error" id="login-error-message"></div>
+            <div class="toggle-link">
+                <a href="#" id="show-signup">Créer un compte</a>
+            </div>
+        </form>
+
+        <!-- Formulaire de Création de Compte -->
+        <form id="signup-form" style="display: none;">
+            <h2>Créer un Compte</h2>
+            <label for="signup-email">Adresse e-mail</label>
+            <input type="email" id="signup-email" placeholder="Votre e-mail" required>
+            <label for="signup-password">Mot de passe</label>
+            <input type="password" id="signup-password" placeholder="Votre mot de passe" required>
+            <label for="signup-confirm-password">Confirmer le mot de passe</label>
+            <input type="password" id="signup-confirm-password" placeholder="Confirmer votre mot de passe" required>
+            <button type="submit">Créer un compte</button>
+            <div class="error" id="signup-error-message"></div>
+            <div class="toggle-link">
+                <a href="#" id="show-login">J'ai déjà un compte</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Basculer entre les formulaires
+        document.getElementById("show-signup").addEventListener("click", (e) => {
+            e.preventDefault();
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("signup-form").style.display = "block";
+        });
+
+        document.getElementById("show-login").addEventListener("click", (e) => {
+            e.preventDefault();
+            document.getElementById("signup-form").style.display = "none";
+            document.getElementById("login-form").style.display = "block";
+        });
+
+        // Soumission du formulaire de connexion
+        document.getElementById("login-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+
+            const response = await fetch("http://localhost:5000/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+                window.location.href = "chat/"; // Rediriger vers la page de chat
+            } else {
+                document.getElementById("login-error-message").innerText = result.message;
+            }
+        });
+
+        // Soumission du formulaire de création de compte
+        document.getElementById("signup-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("signup-email").value;
+            const password = document.getElementById("signup-password").value;
+            const confirmPassword = document.getElementById("signup-confirm-password").value;
+
+            if (password !== confirmPassword) {
+                document.getElementById("signup-error-message").innerText = "Les mots de passe ne correspondent pas.";
+                return;
+            }
+
+            const response = await fetch("http://localhost:5000/api/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+                alert("Compte créé avec succès ! Vous pouvez maintenant vous connecter.");
+                document.getElementById("signup-form").style.display = "none";
+                document.getElementById("login-form").style.display = "block";
+            } else {
+                document.getElementById("signup-error-message").innerText = result.message;
+            }
+        });
+    </script>
+</body>
+</html>

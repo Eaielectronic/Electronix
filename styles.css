@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+}
+
+.logo {
+    width: 150px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #57a112;
+}
+
+.hero {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 100px 20px;
+    border-bottom: 5px solid #ccc;
+}
+
+.hero-img {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.about {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px;
+    background: #fff;
+    border-bottom: 5px solid #ccc;
+}
+
+.about .content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.about h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.about .button {
+    background-color: #57a112;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.about .button:hover {
+    background-color: #46900e;
+}
+
+.features {
+    padding: 50px;
+    text-align: center;
+    background: #f9f9f9;
+    border-bottom: 5px solid #ccc;
+}
+
+.features .images-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.features .feature-img {
+    width: 20%;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.features .feature-img:hover {
+    transform: scale(1.1);
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: #fff;
+}
