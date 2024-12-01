@@ -6,6 +6,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
      crossorigin="anonymous"></script>
     <title>Cours : Introduction aux WebSockets</title>
+    <link rel="icon" href="../../Stand.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../Stand.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
     <style>
         /* Styles généraux */
         body {
@@ -20,7 +23,7 @@
             background-color: #4c8eaf;
             color: white;
             text-align: center;
-            padding: 2em;
+            padding: 0.2em;
         }
 
         header h1 {
@@ -101,7 +104,7 @@
         /* Bouton d'ouverture de la barre latérale */
         #toggleButton {
             position: fixed;
-            top: 20px;
+            top: 100px;
             left: 20px;
             background-color: #4c8eaf;
             color: white;
@@ -154,7 +157,33 @@
     </style>
 </head>
 <body>
+    <div class="navbar" id="navbar">
+        <a href="../../index.html"><img src="../../Titre.png" alt="Logo"></a>
+        <ul><li><a href="./../index.html">Menu</a></li>
+            <li><a href="../index.html">Articles et cours</a></li>
+            <li><a href="../../index.html#links">Abouts</a></li>
+            <li><a href="../../Galery/index.html">Play</a></li>
+            
+            
+        </ul>
+    </div>
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
 
+        window.addEventListener("scroll", () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-80px"; // Cache la navbar
+            } else {
+                navbar.style.top = "0"; // Affiche la navbar
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
+        });
+    </script>
+    <br>
+    <br><br>
+    <br>
 <header>
     <h1>Introduction aux WebSockets</h1>
     <p>Comprendre le fonctionnement des WebSockets et leur utilisation dans les applications web.</p>

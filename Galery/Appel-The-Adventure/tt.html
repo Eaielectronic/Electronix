@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Stand.png" type="image/x-icon">
+    <title>Appel The Adventure</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../styles.css">
+   <style>
+        /* Style global */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('image.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* En-tête */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 0%;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Vidéo */
+        .video-container {
+            margin: 30px 0;
+        }
+
+        /* Boutons */
+        .btn {
+            padding: 12px 20px;
+            color: #fff;
+            font-size: 16px;
+            margin: 8px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .download-btn { background-color: #0F9D58; }
+        .download1-btn { background-color: #a40b00; }
+        
+        .btn:hover { opacity: 0.85; }
+
+        /* Groupe de boutons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Liens additionnels */
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #0F9D58;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .links a:hover { text-decoration: underline; }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" id="navbar">
+        <a href="../../index.html"><img src="../../Titre.png" alt="Logo"></a>
+        <ul><li><a href="./../index.html">Menu</a></li>
+            <li><a href="../../#about">About</a></li>
+            <li><a href="../../#links">Membre</a></li>
+            <li><a href="../../Galery/index.html">Play</a></li>
+            
+            
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br><br><br>
+    <main class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="logo.svg" alt="Logo du jeu">
+            <br><br>
+            <h1>Appel The Adventure - v-beta</h1>
+        </header>
+
+        <!-- Vidéo -->
+        <section class="video-container">
+            <iframe width="660" height="415" src="https://www.youtube.com/embed/ZTWEUWlxNbU?si=YkZy5TYTMW-WDWXX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>Présentation de la video : Erreur du chargement</iframe>
+        </section>
+
+        <!-- Jeu Direct -->
+        <section>
+            <p>Découvrez notre nouveau jeu passionnant !</p>
+            <h2>Jouer directement</h2>
+            <a href="play-plan" class="btn download-btn" id="sendButton1" target="_blank">Jouer maintenant</a>
+        </section>
+
+        <!-- Téléchargement -->
+        <section>
+            <h2>Installer le jeu</h2>
+            <p>(Le fichier HTML est recommandé)</p>
+            <div class="btn-group">
+                <a href="wido" class="btn download1-btn" id="sendButton" target="_blank">Télécharger pour Windows</a>
+                <a href="https://github.com/Eaielectronic/Electronixstockage/raw/main/Appel-The-Aventure-1.6.html.zip" class="btn download-btn" id="sendButton1" target="_blank">Télécharger pour macOS</a>
+                <a href="LINUX" class="btn download1-btn" id="sendButton2" target="_blank">Télécharger pour Linux</a>
+                <a href="https://github.com/Eaielectronic/Electronixstockage/raw/main/Appel-The-Aventure-1.6.html.zip" class="btn download-btn" id="sendButton3" target="_blank">Télécharger au format HTML</a>
+            </div>
+            <p>Téléchargements : <span id="downloadCount">0</span></p>
+        </section>
+
+        <!-- Description -->
+        <section>
+            <h2>Histoire</h2>
+            <p>Micro Manager, dans son désespoir d'acquérir le pouvoir des pommes d'or, a commencé à prendre le contrôle de la planète Appelmoeshapje...</p>
+            <p>Merci de télécharger notre jeu et de nous soutenir !</p>
+        </section>
+
+        <!-- Remerciements et Développement -->
+        <section>
+            <h2>Remerciements</h2>
+            <p>Merci à Griffpatch et Zunfl0w3r pour le projet original Appel !</p>
+
+            <h2>Développement</h2>
+            <p>Appel The Adventure est créé sur TurboWarp avec JavaScript.</p>
+
+            <h2>Modes additionnels</h2>
+            <p>Ajoutez des textures et entités avec nos modes supplémentaires</p>
+            <a href="Modes" class="btn download-btn" target="_blank">Galerie de modes</a>
+        </section>
+
+        <!-- Mises à jour -->
+        <section>
+            <h2>Mises à jour</h2>
+            <object data="fichier.md" type="text/html" width="100%" height="300"></object>
+        </section>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-2631008307109231"
+     data-ad-slot="7557046147"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        <!-- About Section -->
+        <section class="links">
+            <a href="https://github.com/Eaielectronic">GitHub</a>
+            <a href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
+            <a href="https://turbowarp.org">TurboWarp</a>
+            <a href="../../index.html">Desktop</a>
+            <a href="https://dedespo.com">Crédit</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; Appel The Adventure. Tous droits réservés.</p>
+        </footer>
+    </main>
+
+    <!-- Script de comptage de téléchargement -->
+    <script>
+        const socket = new WebSocket('ws://localhost:8010');
+        socket.onmessage = function(event) {
+            document.getElementById('downloadCount').textContent = event.data;
+        };
+        const buttons = document.querySelectorAll('[id^="sendButton"]');
+        buttons.forEach(button => button.addEventListener('click', () => socket.send('true1')));
+        socket.onopen = () => socket.send('get_count1');
+    </script>
+</body>
+</html>
+

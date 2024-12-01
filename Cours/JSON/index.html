@@ -6,6 +6,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
      crossorigin="anonymous"></script>
     <title>Cours : Introduction à JSON</title>
+    <link rel="icon" href="../../Stand.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../Stand.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
     <style>
         /* Styles généraux */
         body {
@@ -19,7 +22,7 @@
             background-color: #4c8eaf;
             color: white;
             text-align: center;
-            padding: 2em;
+            padding: 0.2em;
         }
 
         header h1 {
@@ -126,11 +129,38 @@
         .links1:hover {
             text-decoration: underline;
         }
-
+       
     </style>
 </head>
 <body>
+    <div class="navbar" id="navbar">
+        <a href="../../index.html"><img src="../../Titre.png" alt="Logo"></a>
+        <ul><li><a href="./../index.html">Menu</a></li>
+            <li><a href="../index.html">Articles et cours</a></li>
+            <li><a href="../../index.html#links">Abouts</a></li>
+            <li><a href="../../Galery/index.html">Play</a></li>
+            
+            
+        </ul>
+    </div>
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
 
+        window.addEventListener("scroll", () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-80px"; // Cache la navbar
+            } else {
+                navbar.style.top = "0"; // Affiche la navbar
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
+        });
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
 <header>
       
     <h1>Introduction à JSON (JavaScript Object Notation)</h1>
@@ -169,7 +199,7 @@
         <p>Un document JSON est composé de paires clé-valeur et de tableaux. JSON utilise deux structures principales :</p>
         <ul>
             <li><strong>Objets</strong> : Conteneurs de paires clé-valeur (similaires à un dictionnaire en Python).</li>
-            <li><strong>Tableaux</strong> : Listes ordonnées de valeurs, indiquées entre crochets <code>[]</code>.</li>
+            <li><strong>Tableaux</strong> : Listes ordonnées de valeurs, indiquées entre crochets.</li>
         </ul>
         <h3>Exemple de syntaxe JSON :</h3>
         <code>
@@ -213,18 +243,18 @@
         <h2>3. Syntaxe et Règles de JSON</h2>
         <p>Quelques règles à respecter dans JSON :</p>
         <ul>
-            <li>Les objets commencent par <code>{</code> et se terminent par <code>}</code>.</li>
-            <li>Les tableaux commencent par <code>[</code> et se terminent par <code>]</code>.</li>
-            <li>Chaque clé doit être une chaîne entre guillemets doubles <code>" "</code>.</li>
-            <li>Les paires clé-valeur sont séparées par un deux-points <code>:</code>.</li>
-            <li>Les éléments d'un objet ou tableau sont séparés par une virgule <code>,</code>.</li>
+            <li>Les objets commencent par <code>{</code> et se terminent par <code>}</code></li>
+            <li>Les tableaux commencent par <code>[</code> et se terminent par <code>]</code></li>
+            <li>Chaque clé doit être une chaîne entre guillemets doubles <code>" "</code></li>
+            <li>Les paires clé-valeur sont séparées par un deux-points <code>:</code></li>
+            <li>Les éléments d'un objet ou tableau sont séparés par une virgule <code>,</code></li>
         </ul>
     </section>
 
     <section id="exemples">
         <h2>4. Création et Lecture de fichiers JSON</h2>
         <h3>4.1 Enregistrer des données en JSON</h3>
-        <p>Pour sauvegarder un fichier JSON, on peut utiliser un éditeur de texte (comme Visual Studio Code) et l'enregistrer avec l'extension <code>.json</code>.</p>
+        <p>Pour sauvegarder un fichier JSON, on peut utiliser un éditeur de texte (comme Visual Studio Code) et l'enregistrer avec l'extension <code>.json</code></p>
 
         <h3>4.2 En JavaScript</h3>
         <code>
@@ -334,7 +364,7 @@ print(data)
             <h2>3. Recherche de clés et valeurs</h2>
     
             <h3>En JavaScript</h3>
-            <p>Pour vérifier si une clé existe dans un objet JSON, utilisez <code>hasOwnProperty</code> :</p>
+            <p>Pour vérifier si une clé existe dans un objet JSON, utilisez <code>hasOwnProperty</code> </p>
             <code>
     let utilisateur = { "nom": "Dupont", "age": 30 };
     
@@ -385,7 +415,7 @@ print(data)
             <h2>5. Conversion JSON et String</h2>
     
             <h3>En JavaScript</h3>
-            <p>Pour convertir un objet JavaScript en JSON, utilisez <code>JSON.stringify()</code>, et pour convertir du JSON en objet, utilisez <code>JSON.parse()</code> :</p>
+            <p>Pour convertir un objet JavaScript en JSON, utilisez <code>JSON.stringify()</code> et pour convertir du JSON en objet, utilisez <code>JSON.parse()</code></p>
             <code>
     // Objet JavaScript
     let utilisateur = { "nom": "Dupont", "age": 30 };
@@ -400,7 +430,7 @@ print(data)
             </code>
     
             <h3>En Python</h3>
-            <p>Pour convertir un dictionnaire en chaîne JSON, utilisez <code>json.dumps()</code>, et pour convertir du JSON en dictionnaire, utilisez <code>json.loads()</code> :</p>
+            <p>Pour convertir un dictionnaire en chaîne JSON, utilisez <code>json.dumps()</code> et pour convertir du JSON en dictionnaire, utilisez <code>json.loads()</code> </p>
             <code>
     import json
     
@@ -423,7 +453,7 @@ print(data)
         <h2>5. Exercices pratiques</h2>
         <div class="exercise">
             <h3>Exercice 1 :</h3>
-            <p>Créez un fichier JSON représentant un profil d'utilisateur avec les attributs <code>nom</code> <code>âge</code> <code>email</code> Et un tableau <code>hobbies</code>.</p>
+            <p>Créez un fichier JSON représentant un profil d'utilisateur avec les attributs <code>nom</code> <code>âge</code> <code>email</code> Et un tableau <code>hobbies</code></p>
         </div>
         <div class="exercise">
             <h3>Exercice 2 :</h3>

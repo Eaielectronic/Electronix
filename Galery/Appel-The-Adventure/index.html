@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="Stand.png" type="image/x-icon">
     <title>Appel The Adventure</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../styles.css">
     <style>
         /* Style global */
         * {
@@ -20,110 +21,110 @@
             background-size: cover;
             color: #333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
-            margin: 0;
+            min-height: 100vh;
         }
 
-        /* Container principal */
-        .container {
+
+        /* Conteneur principal */
+        .content {
+            width: 100%;
             max-width: 800px;
             background-color: rgba(255, 255, 255, 0.95);
+            margin-top: 100px;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        /* En-tête */
-        .header {
+        /* Sections */
+        .header, .video-container, section {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header {
+            gap: 10px;
         }
 
         .header img {
             width: 60px;
             height: 60px;
-            border-radius: 0%;
         }
 
         .header h1 {
             font-size: 2em;
-            margin: 0;
             color: #333;
         }
 
-        /* Vidéo */
-        .video-container {
-            margin: 30px 0;
+        .video-container iframe {
+            width: 100%;
+            max-width: 660px;
+            height: 415px;
+            border: none;
         }
 
         /* Boutons */
-        .btn {
-            padding: 12px 20px;
-            color: #fff;
-            font-size: 16px;
-            margin: 8px;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-
-        .download-btn { background-color: #0F9D58; }
-        .download1-btn { background-color: #a40b00; }
-        
-        .btn:hover { opacity: 0.85; }
-
-        /* Groupe de boutons */
         .btn-group {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            font-size: 1.6em;
-            color: #222;
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        /* Liens additionnels */
-        .links {
-            display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 20px;
         }
 
-        .links a {
-            color: #0F9D58;
-            text-decoration: none;
+        .btn {
+            padding: 12px 20px;
             font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
         }
 
-        .links a:hover { text-decoration: underline; }
+        .download-btn {
+            background-color: #0F9D58;
+        }
+
+        .download1-btn {
+            background-color: #a40b00;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        
+p {
+    padding: 15px;
+}.links {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;    /* Aligne verticalement */
+    gap: 15px;              /* Espace entre les liens */
+    flex-wrap: nowrap;      /* Empêche le retour à la ligne */
+    margin-top: 20px;
+    padding: 10px 0;        /* Espacement autour des liens */
+}
+
+.links a {
+    color: #0F9D58;          /* Couleur du lien */
+    text-decoration: none;   /* Supprime le soulignement */
+    font-size: 16px;         /* Taille du texte */
+    transition: color 0.3s;  /* Effet de transition */
+}
+
+.links a:hover {
+    color: #098342;          /* Couleur au survol */
+}
 
         footer {
             margin-top: 30px;
@@ -132,11 +133,37 @@
         }
     </style>
 </head>
+
 <body>
-    <main class="container">
+    <div class="navbar" id="navbar">
+        <a href="../../index.html"><img src="../../Titre.png" alt="Logo"></a>
+        <ul><li><a href="../../index.html">Menu</a></li>
+            <li><a href="../index.html">Articles et cours</a></li>
+            <li><a href="../../index.html#links">Abouts</a></li>
+            <li><a href="../../Galery/index.html">Play</a></li>
+            
+            
+        </ul>
+    </div>
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-80px"; // Cache la navbar
+            } else {
+                navbar.style.top = "0"; // Affiche la navbar
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
+        });
+    </script>
+    <div class="content">
         <!-- Header -->
         <header class="header">
             <img src="logo.svg" alt="Logo du jeu">
+            <br><br>
             <h1>Appel The Adventure - v-beta</h1>
         </header>
 
@@ -149,7 +176,7 @@
         <section>
             <p>Découvrez notre nouveau jeu passionnant !</p>
             <h2>Jouer directement</h2>
-            <a href="play-plan" class="btn download-btn" id="sendButton1" target="_blank">Jouer maintenant</a>
+            <a href="play-plan/Appel The Aventure-1-6.html" class="btn download-btn" id="sendButton1" target="_blank">Jouer maintenant</a>
         </section>
 
         <!-- Téléchargement -->
@@ -203,20 +230,18 @@
 </script>
 
         <!-- About Section -->
-        <section class="links">
+        
+
+        <!-- Footer -->
+        <footer class="links">
             <a href="https://github.com/Eaielectronic">GitHub</a>
             <a href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
             <a href="https://turbowarp.org">TurboWarp</a>
             <a href="../../index.html">Desktop</a>
             <a href="https://dedespo.com">Crédit</a>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; Appel The Adventure. Tous droits réservés.</p>
+            <br>
         </footer>
-    </main>
-
+<div style="align-items: center;"><p>&copy; Appel The Adventure. Tous droits réservés.</p></div>
     <!-- Script de comptage de téléchargement -->
     <script>
         const socket = new WebSocket('ws://localhost:8010');
@@ -228,5 +253,5 @@
         socket.onopen = () => socket.send('get_count1');
     </script>
 </body>
-</html>
 
+</html>

@@ -3,120 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme de Cours et Articles</title>
+    <link rel="icon" href="../Stand.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../Stand.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
-     crossorigin="anonymous"></script>
-    <title>Accueil des Cours</title>
+    crossorigin="anonymous"></script>
+   <!-- Google tag (gtag.js) -->
+
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'G-V1RDHTJSDW');
+</script>
     <style>
-        /* Style de la page */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #e0f7fa;
-            color: #005b96;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        h1 {
-            color: #007bb5;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        /* Style du conteneur des liens */
-        .container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            width: 90%;
-            max-width: 600px;
+        header {
+            background-color: #1e90ff;
+            color: white;
+            padding: 20px;
             text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Style des liens */
-        .course-links {
-            list-style: none;
-            padding: 70;
-            margin: 10;
+        .container {
+            width: 90%;
+            margin: 20px auto;
         }
 
-        .course-links li {
-            margin: 105px 50;
+        .search-bar {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            position: relative;
         }
 
-        .course-links a {
-            text-decoration: none;
-            font-size: 1.2em;
-            color: #007bb5;
-            padding: 10px 4px;
-            border: 2px solid #007bb5;
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #1e90ff;
             border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            outline: none;
         }
 
-        .course-links a:hover {
-            background-color: #007bb5;
-            color: #ffffff;
+        .search-suggestions {
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 100;
         }
+
+        .search-suggestions div {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .search-suggestions div:last-child {
+            border-bottom: none;
+        }
+
+        .search-suggestions div:hover {
+            background-color: #f1f1f1;
+        }
+
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+        }
+
+        .card p {
+            color: #666;
+        }
+    
 
         footer {
-            background-color: #333;
-            color: #fff;
+            margin-top: 40px;
+            background-color: #1e90ff;
+            color: white;
             text-align: center;
-            padding: 15px;
-            position: relative;
-            width: 100%;
-            margin-top: 20px;
+            padding: 10px 0;
         }
+        
+        a {
+    text-decoration: none; /* Enlève le soulignement */
+    color: inherit; /* Récupère la couleur du parent ou définie explicitement */
+    cursor: pointer; /* Annule le style par défaut du curseur */
+}
+.flex-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Ajoute un espace entre l'image et le texte */
+}
 
-        .links1 {
-            color: #4CAF50;
-            text-decoration: none;
-            margin: 0 10px;
-        }
+.flex-container img {
+    max-width: 100px; /* Taille maximum de l'image */
+    height: auto;
+    border-radius: 5px; /* Ajoute des coins arrondis */
+}
 
-        .links1:hover {
-            text-decoration: underline;
-        }
+.flex-container div {
+    flex: 1; /* Permet au texte de prendre l'espace restant */
+}
     </style>
 </head>
 <body>
 
-    <h1>Bienvenue sur les Cours</h1>
-
-    <div class="container">
-        <ul class="course-links">
-            <li><a href="JSON/">Cours JSON</a></li>
-            <br>
-            <li><a href="websockets">WebSockets</a></li>
-            <br>
-            <li><a href="#">Rien pour le moment</a></li>
-            <br>
-            <li><a href="#">Rien pour le moment</a></li>
-            <br>
-            <li><a href="#">Rien pour le moment</a></li>
-            <br>
-            <li><a href="#">Rien pour le moment</a></li>
-            <br>
-            <br><img src="Stand.svg" alt="Illustration SVG" height="150" width="150">
-            <br>
-            <image scr="Stand.svg">
-                <a href="../">🔙</a>
-           
+    <div class="navbar" id="navbar">
+        <a href="../../index.html"><img src="../Titre.png" alt="Logo"></a>
+        <ul><li><a href="./../index.html">Menu</a></li>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../../index.html#links">Membre</a></li>
+            <li><a href="../../Galery/index.html">Play</a></li>
+            
+            
         </ul>
     </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Recherchez un cours ou un article...">
+        <div class="search-suggestions" id="search-suggestions">
+            <!-- Suggestions ajoutées dynamiquement -->
+        </div>
+    </div>
 
-    <footer>
-        <p>Course &copy; 2024</p>
-        <a class="links1" href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
-        <a class="links1" href="https://turbowarp.org/">TurboWarp</a>
-        <a class="links1" href="https://github.com/Eaielectronic">GitHub</a>
-        <a class="links1" href="../">Desktop</a>
-    </footer>
+    <h2 class="section-title">Articles à la Une</h2>
+    <div class="grid">
+        <section id="Turbowarp-vs-scratch">
+       <a href="../article/Turbowarp-vs-scratch/index.html"> <div class="card">
+            <img src="../article/Turbowarp-vs-scratch/vs.webp" alt="TurboWarp vs Scratch">
+            <h3>TurboWarp VS Scratch</h3>
+            <p>découvrez quel logiciel de programmation de blocs a blocs est le mieux pour vous.</p>
+        </div></a></section>
+        <div class="card">
+            <img src="" alt="Rien">
+            <h3>Prochainement</h3>
+            <p>Prochainement</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Catégories</h2>
+    <div class="grid">
+        <section id="JSON">
+        <div class="card">
+            <a href="JSON/index.html"><div class="flex-container">
+                <img src="../article/Turbowarp-vs-scratch/json.png" alt="JSON" style="max-height: 100px;">
+                <div>
+                    <h3>C'est quoi JSON ?</h3>
+                    <p>Explorez JSON !</p>
+                </div>
+            </div></a>
+        </div></section>
+        <section id="WebSockets">
+        <a href="websockets/index.html"><div class="card">
+            <h3>C'est quoi WebSockets ?</h3>
+            <p>Explorez WebSockets</p>
+        </div></a></section>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 Plateforme de Cours et Articles
+</footer>
+
+<script>
+    const searchInput = document.getElementById('search-input');
+    const suggestionsBox = document.getElementById('search-suggestions');
+
+    const data = [
+        { type: 'article', title: 'TurboWarp VS Scratch', link: '#Turbowarp-vs-scratch', img: '../article/Turbowarp-vs-scratch/vs.webp' },
+        { type: 'article', title: 'Article 2', link: '#', img: 'https://via.placeholder.com/50' },
+        { type: 'cours', title: 'JSON', link: '#JSON', img: '/Users/kids/Desktop/Site appel/Electronix/Cours/index1.html' },
+        { type: 'cours', title: 'WebSockets', link: '#WebSockets', img: '' },
+    ];
+
+    searchInput.addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+        suggestionsBox.innerHTML = '';
+        if (query.length > 0) {
+            const filteredData = data.filter(item => item.title.toLowerCase().includes(query));
+            filteredData.forEach(item => {
+                const suggestion = document.createElement('div');
+                suggestion.innerHTML = `
+                    ${item.img ? `<img src="${item.img}" alt="${item.title}" style="width: 30px; height: 30px; margin-right: 10px;">` : ''}
+                    <span>${item.title}</span>
+                `;
+                suggestion.addEventListener('click', () => {
+                    window.location.href = item.link;
+                });
+                suggestionsBox.appendChild(suggestion);
+            });
+            suggestionsBox.style.display = 'block';
+        } else {
+            suggestionsBox.style.display = 'none';
+        }
+    });
+</script>
 
 </body>
 </html>

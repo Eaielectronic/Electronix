@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurboWarp vs Scratch</title>
+    <link rel="icon" href="../../Stand.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../Stand.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
+    crossorigin="anonymous"></script>
+   <!-- Google tag (gtag.js) -->
+
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'G-V1RDHTJSDW');
+</script>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Bleu clair */
+            color: #333;
+        }
+
+        header {
+            background-color: #007acc; /* Bleu plus foncé */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #005c99;
+        }
+
+        a {
+            color: #007acc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 800px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007acc;
+            color: white;
+        }
+
+        footer {
+            background-color: #005c99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 10px;
+        }
+
+        /* Styles pour le panneau coulissant */
+        #side-panel {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #005c99;
+            overflow: hidden;
+            transition: 0.3s;
+            padding-top: 20px;
+        }
+
+        #side-panel a {
+            color: white;
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+        }
+
+        #side-panel a:hover {
+            background-color: #007acc;
+        }
+
+        #side-panel-toggle {
+            position: absolute;
+            top: 20px;
+            right: -40px;
+            background-color: #007acc;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        #side-panel.open {
+            left: 0;
+        }
+
+        #side-panel-toggle.open {
+            right: 220px;
+        }
+        
+        .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .image-container img {
+      display: block;
+      width: 100%; /* Ajustez selon vos besoins */
+      height: auto;
+    }
+
+    .image-container .text {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: white; /* Couleur du texte */
+      background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+      padding: 5px 10px;
+      border-radius: 5px; /* Coins arrondis, optionnel */
+      font-size: 16px;
+    }
+    .aul {
+      list-style-type: none; /* Supprime les puces par défaut */
+      padding-left: 20px; /* Ajoute un décalage */
+  
+    }
+    .aul li {
+      margin-bottom: 20px; /* Espace entre les éléments */
+    }
+    .aul li::before {
+      content: "➜"; /* Code Unicode pour une flèche droite */
+      margin-right: 10px; /* Espace entre la flèche et le texte */
+      color: #000; /* Couleur de la flèche */
+    }
+    .magic-box {
+      background-color: rgba(0, 229, 0, 0.315); /* Vert */
+      border: green;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative; /* Nécessaire pour positionner le reflet */
+      color: white;
+      text-align: left;
+      overflow: hidden; /* Cache le reflet qui déborde */
+    }
+    .boxg {
+      background-color: rgba(0, 229, 0, 0.315); /* Vert */
+      border: green;
+      padding: 20px;
+      border-radius: 10px;
+ 
+      
+      text-align: left;
+      
+    }
+    .boxr {
+      background-color: rgba(229, 0, 0, 0.315); /* Vert */
+      border: rgb(128, 0, 0);
+      padding: 20px;
+      border-radius: 10px;
+ 
+      
+      text-align: left;
+      
+    }
+    /* Reflet animé */
+    .magic-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%; /* Départ en dehors à gauche */
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-30deg); /* Inclinaison pour l'effet de reflet */
+      animation: shine 6s infinite; /* Animation continue */
+    }
+
+    /* Liste stylisée */
+    
+    /* Animation de déplacement */
+    @keyframes shine {
+      0% {
+        left: -100%;
+      }
+      40% {
+        left: 100%; /* Fin du passage du reflet */
+      }
+      100% {
+        left: 100%;
+      }
+    }
+    .article-images {
+      display: flex; /* Aligne les images en ligne */
+      gap: 20px; /* Espace entre les images */
+      justify-content: center; /* Centre les images horizontalement */
+      align-items: center; /* Aligne les images verticalement */
+      margin: 20px auto; /* Centrage vertical/horizontal avec des marges */
+
+      max-width: 80%; /* Largeur maximale pour le conteneur */
+    }
+
+    /* Style des images */
+    .article-images img {
+      width: 80%; /* Prend tout l'espace disponible */
+      max-width: 300px; /* Taille maximale pour chaque image */
+      
+    }
+    .article-annex {
+      display: flex; /* Dispose le texte et l'image côte à côte */
+      align-items: center; /* Aligne verticalement */
+      justify-content: space-between; /* Sépare le texte et l'image */
+      background-color: #f9f9f9; /* Couleur de fond */
+      border: 1px solid #ddd; /* Bordure légère */
+      border-radius: 10px; /* Coins arrondis */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+      padding: 20px; /* Espace intérieur */
+      margin: 15px auto; /* Espacement extérieur */
+      max-width: 800px; /* Largeur maximale de l'article */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
+    }
+
+    /* Texte de l'article */
+    .article-annex .content {
+      flex: 2; /* Prend plus d'espace que l'image */
+      margin-right: 20px; /* Espacement entre le texte et l'image */
+    }
+
+    .article-annex h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .article-annex p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Image de l'article */
+    .article-annex img {
+      flex: 1; /* Prend moins d'espace que le texte */
+      max-width: 150px; /* Largeur maximale de l'image */
+      height: auto; /* Garde les proportions */
+      border-radius: 8px; /* Coins arrondis */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile pour l'image */
+    }
+
+    /* Effet au survol */
+    .article-annex:hover {
+      transform: translateY(-5px); /* Déplacement vers le haut */
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+    }
+
+    
+    </style>
+
+<body>
+    <div class="navbar" id="navbar">
+        <a href="../../index.html"><img src="../../Titre.png" alt="Logo"></a>
+        <ul><li><a href="./../index.html">Menu</a></li>
+            <li><a href="../../#about">About</a></li>
+            <li><a href="../../#links">Membre</a></li>
+            <li><a href="../../Galery/index.html">Play</a></li>
+            
+            
+        </ul>
+    </div>
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-80px"; // Cache la navbar
+            } else {
+                navbar.style.top = "0"; // Affiche la navbar
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
+        });
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    
+
+
+<section id="presentation"><a href="#presentation">Présentation</a><br>
+    <a href="#table-comparatif">Tableau Comparatif</a>
+    <br><a href="#choix">Quel outil choisir ?</a>
+</div>
+
+    <h1 style="font-size: 48px;font-weight: bold; color: #333;text-align: center;">Présentation de TurboWarp et Scratch</h1>
+<div class="image-container"><img src="vs.webp" alt="Image comparative entre TurboWarp et Scratch" style="width:100%; margin-top: 10px; border-radius: 8px;">
+    <div class="text">AI généré - DALL-E</div>
+  </div>
+    
+    <div class="article-images">
+        <img src="../../Turbowarp_logo.png" alt="Image 1">
+        
+      </div>
+    <h3><strong>TurboWarp</strong></h3>
+    <p><strong>TurboWarp</strong> est une version modifiée de Scratch, qui intègre des améliorations pour offrir plus de flexibilité et de performances. <br>
+    Créé à partir du code open-source de Scratch, TurboWarp est particulièrement prisé des utilisateurs souhaitant aller au-delà des limites de Scratch.</p>
+    
+<strong style="color: green;"> Avantages :</strong>
+   <div class="boxg">
+
+    <ul class="aul">
+<li><strong> Open-source </strong>: Accessible à tous, avec un code modifiable pour les développeurs.</li>
+<li><strong> Flexibilité accrue </strong>: Permet d’ajouter des extensions en JavaScript.</li>
+<li><strong> Export natif</strong>: Transformez vos projets en applications <trong>HTML, Windows, Linux</trong>, ou <strong>iOS</strong> .</li>
+<li><strong> Optimisation</strong>: TurboWarp est bien plus rapide que Scratch grâce à ses améliorations, comme le <strong>mode 60 FPS</strong>.</li>
+<li><strong> Personnalisation </strong>: Personnalisation</li>
+    </ul>
+</div>
+<strong style="color: rgb(128, 26, 0);"> Inconvénients :</strong>
+   <div class="boxr">
+
+    <ul class="aul">
+
+<li><strong> Pas de communauté intégrée </strong>: Contrairement à Scratch, il n’y a pas de réseau social intégré pour partager et commenter des projets.</li>
+<li><strong> Moins connu </strong>: TurboWarp a encore une faible notoriété auprès des utilisateurs.</li>
+    </ul>
+</div>
+<div class="article-images">
+    
+    <img src="scratch.png" alt="Image 2">
+  </div>
+<h3><strong>Scrtach</strong></h3>
+    <p><strong>Scratch</strong> est un outil éducatif largement reconnu pour son interface conviviale et sa communauté active. 
+        <br>Développé par le MIT, il vise à enseigner les bases de la programmation aux enfants et débutants.</p>
+    
+<strong style="color: green;"> Avantages :</strong>
+   <div class="boxg">
+
+    <ul class="aul">
+<li><strong> Facile d’accès </strong>: Idéal pour les débutants grâce à une interface simple et intuitive</li>
+<li><strong> Communauté dynamique </strong>: Des millions d’utilisateurs partagent, commentent et remodèlent des projets.</li>
+<li><strong> Wiki et documentation</strong>:  Une base de connaissances exhaustive pour répondre aux questions courantes.</li>
+
+    </ul>
+</div>
+<strong style="color: rgb(128, 26, 0);"> Inconvénients :</strong>
+   <div class="boxr">
+
+    <ul class="aul">
+
+<li><strong> Limites techniques </strong>: Scratch est conçu comme un "bac à sable" fermé, sans possibilité d’ajouter des modules ou extensions externes.</li>
+<li><strong> Performances </strong>:  Moins optimisé que TurboWarp pour les projets complexes ou gourmands en ressources.</li>
+    </ul>
+
+    
+</section>
+
+<section id="table-comparatif">
+    <h2>Tableau Comparatif</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Critères</th>
+                <th>TurboWarp</th>
+                <th>Scratch</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Facilité d'accès</td>
+                <td>✔️</td>
+                <td>✔️</td>
+            </tr>
+            <tr>
+                <td>Performances</td>
+                <td>✔️ Mode 60 FPS</td>
+                <td>❌ Moins optimisé</td>
+            </tr>
+            <tr>
+                <td>Extensions</td>
+                <td>✔️ Ajout en JavaScript</td>
+                <td>❌ Non disponible</td>
+            </tr>
+            <tr>
+                <td>Export natif</td>
+                <td>✔️ HTML, Windows, Linux, iOS</td>
+                <td>❌ Non disponible</td>
+            </tr>
+            <tr>
+                <td>Communauté</td>
+                <td>❌ Absente</td>
+                <td>✔️ Active</td>
+            </tr>
+            <tr>
+                <td>Wiki / Documentation</td>
+                <td>❌ Limitée</td>
+                <td>✔️ Complète</td>
+            </tr>
+            <tr>
+                <td>Open-source</td>
+                <td>✔️</td>
+                <td>❌</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="choix">
+    <h2>Quel outil choisir ?</h2>
+    <p>Le choix entre TurboWarp et Scratch dépendra de vos besoins et de votre niveau d’expérience.</p>
+    <BR>
+        <h2><strong>Scratch : Pour les débutants et l’apprentissage</strong></h2>
+
+        <p>
+
+            Si vous êtes nouveau dans la programmation ou que vous souhaitez explorer un environnement ludique et communautaire, Scratch est un excellent point de départ. 
+            <br>Sa grande communauté vous permettra de vous inspirer, d’obtenir de l’aide et de collaborer sur des projets.
+        </p>
+
+        <BR>
+            <h2><strong>TurboWarp : Pour les utilisateurs avancés et le développement de jeux</strong></h2>
+    
+            <p>Si vous souhaitez pousser vos projets plus loin avec des fonctionnalités avancées, des performances accrues et la possibilité d’exporter vos créations en applications natives, TurboWarp est la solution idéale. 
+                <br>Il est parfait pour les développeurs souhaitant implémenter des outils modernes comme JavaScript ou des extensions personnalisées.
+            </p>
+            <br>
+            <strong>Conclusion</strong>
+            <br><p>En résumé, Scratch et TurboWarp se complètent parfaitement : Scratch est un excellent choix pour débuter et s’initier à la programmation, tandis que TurboWarp répond aux besoins des créateurs plus expérimentés en quête de flexibilité et de puissance.
+
+                Choisissez l’outil qui correspond le mieux à vos projets et laissez libre cours à votre créativité !</p>
+    <img src="https://via.placeholder.com/800x400?text=TurboWarp+ou+Scratch" alt="Image d'un utilisateur réfléchissant entre TurboWarp et Scratch" style="width:100%; margin-top: 10px; border-radius: 8px;">
+</section>
+<div class="article-annex">
+    <h2>Découvrir TurboWarp.</h2>
+    <p>
+        Découvrir TurboWarp.
+    </p><img src="../../Turbowarp_logo.png" alt="Illustration de l'article">
+  </div>
+  <div class="article-annex">
+    <h2>Découvir JSON</h2>
+    <p>
+     Découvir JSON
+    </p><img src="json.png" alt="Illustration de l'article">
+  </div>
+  <div class="article-annex">
+    <h2>Mode de Appel The Adventure</h2>
+    <p>
+     Mode de Appel The Adventure
+    </p><img src="../../Titre.png" alt="Illustration de l'article">
+  </div>
+<footer>
+    <p>
+        <a class="links1" href="https://scratch.mit.edu/users/SERPENT1867/">Scratch</a>
+        <a class="links1" href="https://turbowarp.org/">TurboWarp</a>
+        <a class="links1" href="https://github.com/Eaielectronic">GitHub</a>
+        <a class="links1" href="">Desktop</a>
+        <a class="links1" href="#">Crédits</a>
+    </p>
+    <p>&copy; 2024 - Comparatif TurboWarp vs Scratch</p>
+</footer>
+
+<script>
+    const sidePanel = document.getElementById("side-panel");
+    const toggleButton = document.getElementById("side-panel-toggle");
+
+    toggleButton.addEventListener("click", () => {
+        sidePanel.classList.toggle("open");
+        toggleButton.classList.toggle("open");
+    });
+</script>
+
+</body>
+</html>
