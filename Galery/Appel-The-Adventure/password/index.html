@@ -125,7 +125,7 @@
         const form = document.getElementById('resetForm');
         const messageDiv = document.getElementById('message');
         const checkmarkImage = document.getElementById('checkmarkImage');
-        const ws = new WebSocket('ws://localhost:1234'); // Assurez-vous que le serveur WebSocket est correctement configuré
+        const ws = new WebSocket('wss://srv.appel.ovh:1234'); // Assurez-vous que le serveur WebSocket est correctement configuré
 
         // Connexion WebSocket
         ws.onopen = () => {
