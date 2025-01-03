@@ -2,7 +2,7 @@
 Correction de beaucoup de bugs lié a la vitesse des FPS.
 Ajout de nouvel items :
 - mortier
-- bloc cassable par les mob blocs-pics
+- blocs cassables par les mobs blocs-pics
 **22 décembre 2024**
 
 Correction de divers bugs et le jeu fonctionne en 60 FPS maintenant.
