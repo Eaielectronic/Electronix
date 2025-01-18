@@ -50,7 +50,7 @@
 @media (max-width: 768px) {
     section {
         flex-direction: column;
-        text-align: center;
+        text-align: justify;
     }
     .text, .image {
         max-width: 90%;
@@ -60,3 +60,48 @@
     
     }
 }
+.main-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    gap: 20px;
+    align-items: flex-start; /* Aligne les éléments en haut */
+    text-align: justify;
+}
+
+/* Contenu principal */
+.content-container {
+    flex: 3; /* Plus large */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Publicité */
+.ad-container {
+    flex: 1; /* Plus petit */
+    max-width: 300px; /* Limite la largeur */
+    position: sticky;
+    top: 20px; /* Reste visible lors du défilement */
+    height: auto;
+    background-color: #f9f9f9; /* Fond léger */
+    border: 1px solid #ddd; /* Bordure fine */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        text-align: justify;
+    }
+
+    .ad-container {
+        max-width: 100%;
+        position: static; /* Publicité en ligne normale sur mobile */
+    }
+}
+p {
+
+justify}
