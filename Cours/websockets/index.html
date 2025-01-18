@@ -166,6 +166,26 @@
         th {
             background-color: #f2f2f2;
         }
+        .main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container.content {
+    flex: 1;
+    margin-right: 20px; /* Ajoute un espace entre le contenu et la publicité */
+}
+
+.ad-container {
+    width: 300px; /* Largeur de l'annonce */
+    max-width: 100%; /* S'adapte à l'écran si nécessaire */
+    flex-shrink: 0; /* Évite que la pub rétrécisse */
+    position: sticky;
+    top: 20px; /* La publicité reste visible lors du défilement */
+}
     </style>
 </head>
 <body>
@@ -223,18 +243,7 @@
 
 <!-- Bouton d'ouverture du panneau latéral -->
 <button id="toggleButton">☰ Menu</button>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
-     crossorigin="anonymous"></script>
-<!-- BORDER -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2631008307109231"
-     data-ad-slot="6535635135"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
 <!-- Contenu principal -->
 <div class="container content" style="align-items: center;">
     <a class="links1" href="../index.html">🔙</a>
@@ -381,6 +390,17 @@ socket.onclose = () => {
             Exécutez le serveur Python, puis ouvrez le fichier client dans un navigateur pour voir les messages échangés.
         </p>
     </section>
+</div>
+<div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2631008307109231"
+         data-ad-slot="6535635135"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
      crossorigin="anonymous"></script>
