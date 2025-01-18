@@ -115,19 +115,21 @@
 
         /* Bouton d'ouverture de la barre latérale */
         #toggleButton {
-            position: fixed;
-            top: 100px;
-            left: 20px;
-            background-color: #4c8eaf;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            z-index: 1100;
-            border-radius: 5px;
-        }
+            position: fixed; /* Fixe le bouton à l'écran */
+    bottom: 20px; /* Place le bouton à 20px du bas */
+    right: 20px; /* Place le bouton à 20px de la droite */
+    z-index: 1100; /* Assure que le bouton reste au-dessus des autres éléments */
+    background-color: #4c8eaf; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 10px; /* Espacement interne */
+    border: none; /* Supprime les bordures */
+    border-radius: 5px; /* Arrondi les coins */
+    cursor: pointer; /* Change le curseur au survol */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Ajoute une ombre légère */
 
+
+}
+    
         .content {
             
             padding: 20px;
@@ -166,25 +168,35 @@
         th {
             background-color: #f2f2f2;
         }
-        .main-content {
+        .main-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
+    padding: 20px;
+    gap: 20px;
+    align-items: flex-start; /* Aligne les éléments en haut */
 }
 
-.container.content {
-    flex: 1;
-    margin-right: 20px; /* Ajoute un espace entre le contenu et la publicité */
+/* Contenu principal */
+.content-container {
+    flex: 3; /* Plus large */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Publicité */
 .ad-container {
-    width: 300px; /* Largeur de l'annonce */
-    max-width: 100%; /* S'adapte à l'écran si nécessaire */
-    flex-shrink: 0; /* Évite que la pub rétrécisse */
+    flex: 1; /* Plus petit */
+    max-width: 300px; /* Limite la largeur */
     position: sticky;
-    top: 20px; /* La publicité reste visible lors du défilement */
+    top: 20px; /* Reste visible lors du défilement */
+    height: auto;
+    background-color: #f9f9f9; /* Fond léger */
+    border: 1px solid #ddd; /* Bordure fine */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
     </style>
 </head>
@@ -245,7 +257,9 @@
 <button id="toggleButton">☰ Menu</button>
 
 <!-- Contenu principal -->
-<div class="container content" style="align-items: center;">
+<div class="main-container">
+    <!-- Contenu principal -->
+    <div class="content-container">
     <a class="links1" href="../index.html">🔙</a>
     <section id="historique">
         <h2>Historique des WebSockets</h2>
@@ -401,6 +415,7 @@ socket.onclose = () => {
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+</div></div>
 </div>
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
      crossorigin="anonymous"></script>
