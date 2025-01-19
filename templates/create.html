@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'Modifier' if article_title else 'Créer' }} un Article</title>
+    <script src="https://cdn.tiny.cloud/1/iy69qxpoqx5ygnmlf223024l3yqpuz9jukrp9z67bbh5tyw0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#content',  // Assurez-vous que l'élément avec cet ID est utilisé dans le formulaire
+            plugins: 'image table link code',
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright | image table link | code',
+            height: 500,
+            images_upload_url: '/upload_image',  // Si vous avez une route pour gérer l'upload des images
+            automatic_uploads: true
+        });
+    </script>
+</head>
+<body>
+    <h1>{{ 'Modifier' if article_title else 'Créer' }} un Article</h1>
+
+    <!-- Formulaire pour la création ou modification d'article -->
+    <form method="POST" action="{{ url_for('create_article') if not article_title else url_for('edit_article', article_name=article_title) }}">
+        <label for="title">Titre :</label>
+        <!-- Si article_title est défini, on met le titre de l'article dans le champ -->
+        <input type="text" name="title" id="title" value="{{ article_title if article_title else '' }}" required>
+        <br>
+
+        <label for="content">Contenu :</label>
+        <!-- On charge le contenu de l'article si disponible -->
+        <textarea id="content" name="content" required>{{ article_content if article_content else '' }}</textarea>
+        <br>
+
+        <!-- Le texte du bouton change selon si c'est un article à créer ou à modifier -->
+        <button type="submit">{{ 'Enregistrer' if article_title else 'Créer' }}</button>
+    </form>
+</body>
+</html>
