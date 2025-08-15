@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1RDHTJSDW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V1RDHTJSDW');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MRGQDX6N');</script>
+    <!-- End Google Tag Manager -->
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
+     crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Stand.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Stand.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <title>Appel The Adventure - Jeu Vidéo Professionnel | Godot Engine</title>
+
+    <style>
+        /* Reset et variables CSS */
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff6b35;
+            --accent-color: #7c3aed;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation futuriste */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img1.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Section Evolution */
+        .evolution-section {
+            padding: 5rem 0;
+            background: var(--darker-bg);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .evolution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .evolution-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .evolution-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        .tech-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .tech-badge {
+            background: var(--gradient-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .evolution-image {
+            text-align: center;
+        }
+
+        .evolution-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .evolution-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Téléchargements */
+        .download-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .download-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Section Remerciements */
+        .credits-section {
+            padding: 5rem 0;
+            background: var(--dark-bg);
+        }
+
+        .credits-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .griffpatch-tribute {
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .griffpatch-tribute img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-bg);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        .social-links img {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .evolution-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRGQDX6N"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="Titre.png" alt="Appel The Adventure" class="logo">
+            <ul class="nav-links">
+                <li><a href="#play">Jouer</a></li>
+                <li><a href="#download">Télécharger</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="Cours/index.html">Articles</a></li>
+                <li><a href="https://srv.appel.ovh/login">Connexion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">APPEL THE ADVENTURE</h1>
+            <p class="hero-subtitle">De Scratch à Godot - Une Évolution Professionnelle</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary">Télécharger Maintenant</a>
+                <a href="#play" class="btn btn-secondary">Jouer en Ligne</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Evolution -->
+    <section class="evolution-section">
+        <div class="container">
+            <h2 class="section-title">L'ÉVOLUTION D'UN JEU</h2>
+            <div class="evolution-grid">
+                <div class="evolution-content">
+                    <h3>De Scratch vers Godot Engine</h3>
+                    <p>
+                        Inspiré par le travail exceptionnel de <strong>Griffpatch</strong> sur Scratch, 
+                        nous avons entrepris de recréer et d'améliorer cette expérience en utilisant 
+                        <strong>Godot Engine</strong>, un moteur de jeu professionnel.
+                    </p>
+                    <p>
+                        Cette transition nous a permis d'offrir une expérience de jeu plus fluide, 
+                        des graphismes améliorés, et surtout, la possibilité de distribuer le jeu 
+                        sur toutes les plateformes modernes.
+                    </p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Godot Engine</span>
+                        <span class="tech-badge">Cross-Platform</span>
+                        <span class="tech-badge">60 FPS</span>
+                        <span class="tech-badge">HD Graphics</span>
+                    </div>
+                </div>
+                <div class="evolution-image">
+                    <img src="Turbowarp_logo.png" alt="Godot Engine">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Téléchargements -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <h2 class="section-title">TÉLÉCHARGEZ SUR VOTRE PLATEFORME</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                Disponible sur toutes les plateformes principales
+            </p>
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="platform-icon">🖥️</div>
+                    <h4>Windows</h4>
+                    <p>Compatible Windows 10/11</p>
+                    <a href="#" class="btn btn-primary">Télécharger .exe</a>
+                </div>
+                <div class="download-card">
+                    <div class="platform-icon">🍎</div>
+                    <h4>macOS</h4>
+                    <p>Fichier .dmg universel</p>
+                    <a href="#" class="btn btn-primary">Télécharger .dmg</a>
+                </div>
+                <div class="download-card">
+                    <div class="platform-icon">🐧</div>
+                    <h4>Linux</h4>
+                    <p>AppImage portable</p>
+                    <a href="#" class="btn btn-primary">Télécharger .AppImage</a>
+                </div>
+                <div class="download-card">
+                    <div class="platform-icon">📱</div>
+                    <h4>Android</h4>
+                    <p>Google Play Store</p>
+                    <a href="#" class="btn btn-primary">Télécharger APK</a>
+                </div>
+                <div class="download-card">
+                    <div class="platform-icon">📲</div>
+                    <h4>iOS</h4>
+                    <p>App Store</p>
+                    <a href="#" class="btn btn-primary">Télécharger</a>
+                </div>
+                <div class="download-card">
+                    <div class="platform-icon">🌐</div>
+                    <h4>Web</h4>
+                    <p>Jouez directement en ligne</p>
+                    <a href="Galery/index.html" class="btn btn-primary">Jouer Maintenant</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Remerciements -->
+    <section class="credits-section">
+        <div class="container">
+            <div class="credits-content">
+                <h2 class="section-title">REMERCIEMENTS</h2>
+                <div class="griffpatch-tribute">
+                    <img src="grifp.png" alt="Griffpatch">
+                    <h3>Merci à Griffpatch</h3>
+                    <p>
+                        Ce projet n'aurait pas vu le jour sans l'inspiration extraordinaire de 
+                        <strong>Griffpatch</strong>, créateur légendaire de la communauté Scratch. 
+                        Son jeu original a servi de base créative pour cette adaptation professionnelle.
+                    </p>
+                    <p>
+                        Nous avons conservé l'esprit et le gameplay original tout en apportant 
+                        les améliorations techniques que permet Godot Engine.
+                    </p>
+                    <a href="https://scratch.mit.edu/users/griffpatch/" class="btn btn-secondary" target="_blank">
+                        Visiter le profil Griffpatch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publicité -->
+    <div style="text-align: center; padding: 2rem;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2631008307109231"
+         crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-2631008307109231"
+             data-ad-slot="7557046147"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Eaielectronic" target="_blank">
+                    <img src="github1.png" alt="GitHub">
+                </a>
+                <a href="https://www.youtube.com/@Craftelectron-qv2uj" target="_blank">
+                    <img src="youtube.png" alt="YouTube">
+                </a>
+                <a href="https://scratch.mit.edu/users/SERPENT1867/" target="_blank">
+                    <img src="Stand.png" alt="Scratch">
+                </a>
+            </div>
+            <p>&copy; 2024 Appel The Adventure. Tous droits réservés.</p>
+            <p style="margin-top: 1rem; color: var(--text-gray);">
+                Développé avec Godot Engine | Inspiré par Griffpatch
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appel The Adventure - Jeu Vidéo Professionnel</title>
+    <link rel="icon" href="Stand.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff6b35;
+            --accent-color: #7c3aed;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --text-light: #e0e0e0;
+            --text-accent: #00d4ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Navigation futuriste */
+        .navbar-custom {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-color);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Hero Section avec images défilantes */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--darker-bg), var(--dark-bg));
+            z-index: -2;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px var(--primary-color);
+            }
+
+            to {
+                text-shadow: 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-futuristic {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-futuristic:hover {
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-futuristic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-futuristic:hover::before {
+            left: 0;
+        }
+
+        /* Section À propos */
+        .about-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Section Téléchargements */
+        .download-section {
+            padding: 5rem 0;
+            background: var(--dark-bg);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .download-card {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(0, 212, 255, 0.1));
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Section Crédits */
+        .credits-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+        }
+
+        .credit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .credit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .credit-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--secondary-color);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer styles */
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+            transform: translateX(5px);
+        }
+
+        .social-links a:hover i {
+            color: var(--primary-color) !important;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .tech-badge {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                text-align: center;
+            }
+
+            .tech-badge {
+                min-width: 100px;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="Stand.png" alt="Logo" width="40" height="40" class="me-2">
+                APPEL ADVENTURE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#download">Télécharger</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#credits">Crédits</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('img1.png')"></div>
+            <div class="hero-slide" style="background-image: url('Stand.png')"></div>
+            <div class="hero-slide" style="background-image: url('Titre.png')"></div>
+        </div>
+        <div class="hero-content">
+            <img src="Titre.png" alt="Appel The Adventure" class="hero-logo mb-4" style="max-width: 600px; width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));">
+            <p class="hero-subtitle">Une aventure épique repensée avec Godot Engine</p>
+            <p class="mb-4">Découvrez la version révolutionnaire de notre jeu, entièrement recréée avec Godot pour une
+                expérience fluide et professionnelle sur toutes les plateformes.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-futuristic">
+                    <i class="bi bi-play-fill me-2"></i>Jouer Maintenant
+                </button>
+                <button class="btn btn-futuristic">
+                    <i class="bi bi-download me-2"></i>Télécharger
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Section À propos -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title fade-in">De Scratch à Godot</h2>
+            <div class="row">
+                <div class="col-lg-6 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h3>Transition Technologique</h3>
+                        <p>Inspiré par le travail exceptionnel de <strong>Griffpatch</strong> sur Scratch, nous avons
+                            entièrement recréé l'expérience avec Godot Engine pour offrir des performances optimales et
+                            une fluidité incomparable.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h3>Performance Optimisée</h3>
+                        <p>Grâce à Godot, profitez d'un gameplay ultra-fluide, de temps de chargement réduits et d'une
+                            expérience de jeu professionnelle sur toutes les plateformes.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+                        <h3>Graphismes Améliorés</h3>
+                        <p>Des visuels repensés, des effets de particules avancés et une interface utilisateur moderne
+                            pour une immersion totale dans l'aventure.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-controller"></i>
+                        </div>
+                        <h3>Contrôles Intuitifs</h3>
+                        <p>Support complet des manettes, contrôles tactiles optimisés pour mobile, et personnalisation
+                            des touches pour une expérience adaptée à chaque joueur.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Téléchargements -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Téléchargez sur Votre Plateforme</h2>
+            <p class="text-center mb-5 fade-in">Disponible sur toutes les plateformes principales pour une expérience
+                optimale</p>
+
+            <div class="download-grid fade-in">
+                <div class="download-card">
+                    <div class="platform-icon">
+                        <i class="bi bi-windows"></i>
+                    </div>
+                    <h4>Windows</h4>
+                    <p>Compatible Windows 10/11</p>
+                    <button class="btn btn-futuristic mt-3">
+                        <i class="bi bi-download me-2"></i>Télécharger .exe
+                    </button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">
+                        <i class="bi bi-apple"></i>
+                    </div>
+                    <h4>macOS</h4>
+                    <p>Support Intel & Apple Silicon</p>
+                    <button class="btn btn-futuristic mt-3">
+                        <i class="bi bi-download me-2"></i>Télécharger .dmg
+                    </button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">
+                        <i class="bi bi-ubuntu"></i>
+                    </div>
+                    <h4>Linux</h4>
+                    <p>AppImage & packages .deb</p>
+                    <button class="btn btn-futuristic mt-3">
+                        <i class="bi bi-download me-2"></i>Télécharger Linux
+                    </button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">
+                        <i class="bi bi-phone"></i>
+                    </div>
+                    <h4>Android</h4>
+                    <p>Google Play Store</p>
+                    <button class="btn btn-futuristic mt-3">
+                        <i class="bi bi-google-play me-2"></i>Play Store
+                    </button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">
+                        <i class="bi bi-phone"></i>
+                    </div>
+                    <h4>iOS</h4>
+                    <p>App Store</p>
+                    <button class="btn btn-futuristic mt-3">
+                        <i class="bi bi-apple me-2"></i>App Store
+                    </button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <h4>Web</h4>
+                    <p>Jouez directement en ligne</p>
+                    <button class="btn btn-futuristic mt-3">
+                        <i class="bi bi-play-fill me-2"></i>Jouer en ligne
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section Crédits -->
+    <section id="credits" class="credits-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Remerciements</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4 fade-in">
+                    <div class="credit-card">
+                        <img src="grifp.png" alt="Griffpatch" class="credit-avatar">
+                        <h4>Griffpatch</h4>
+                        <p class="text-muted">Créateur Original</p>
+                        <p>Un immense merci à Griffpatch pour son travail inspirant sur Scratch qui a servi de base à
+                            notre aventure.</p>
+                        <a href="https://scratch.mit.edu/users/griffpatch/" class="btn btn-futuristic btn-sm"
+                            target="_blank">
+                            <i class="bi bi-link-45deg me-2"></i>Profil Scratch
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 fade-in">
+                    <div class="credit-card">
+                        <img src="Stand.png" alt="Notre équipe" class="credit-avatar">
+                        <h4>Notre Équipe</h4>
+                        <p class="text-muted">Développement Godot</p>
+                        <p>Équipe passionnée qui a recréé et amélioré l'expérience originale avec Godot Engine.</p>
+                        <a href="https://github.com/Eaielectronic" class="btn btn-futuristic btn-sm" target="_blank">
+                            <i class="bi bi-github me-2"></i>GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center fade-in">
+                    <h3 class="mb-4">Technologies Utilisées</h3>
+                    <div class="d-flex justify-content-center flex-wrap gap-4">
+                        <div class="tech-badge">
+                            <i class="bi bi-code-square" style="font-size: 2rem; color: var(--primary-color);"></i>
+                            <p class="mt-2">Godot Engine</p>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="bi bi-palette" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <p class="mt-2">Design UI/UX</p>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="bi bi-music-note" style="font-size: 2rem; color: var(--accent-color);"></i>
+                            <p class="mt-2">Audio Engine</p>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="bi bi-cloud" style="font-size: 2rem; color: var(--primary-color);"></i>
+                            <p class="mt-2">Cloud Save</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--darker-bg); border-top: 2px solid var(--primary-color);">
+        <div class="container py-5">
+            <div class="row">
+                <!-- Logo et description -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="Stand.png" alt="Logo" width="50" height="50" class="me-3">
+                        <h5 class="mb-0" style="color: var(--primary-color); font-family: 'Orbitron', monospace;">APPEL
+                            ADVENTURE</h5>
+                    </div>
+                    <p class="text-muted">Une aventure épique repensée avec Godot Engine. Découvrez un monde fantastique
+                        avec des graphismes améliorés et une fluidité incomparable.</p>
+                    <div class="social-links mt-3">
+                        <a href="https://github.com/Eaielectronic" class="me-3" target="_blank" title="GitHub">
+                            <i class="bi bi-github"
+                                style="font-size: 1.8rem; color: var(--text-light); transition: all 0.3s ease;"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@Craftelectron-qv2uj" class="me-3" target="_blank"
+                            title="YouTube">
+                            <i class="bi bi-youtube"
+                                style="font-size: 1.8rem; color: var(--text-light); transition: all 0.3s ease;"></i>
+                        </a>
+                        <a href="https://scratch.mit.edu/users/SERPENT1867/" class="me-3" target="_blank"
+                            title="Scratch">
+                            <i class="bi bi-code-square"
+                                style="font-size: 1.8rem; color: var(--text-light); transition: all 0.3s ease;"></i>
+                        </a>
+                        <a href="https://discord.gg/votre-serveur" class="me-3" target="_blank" title="Discord">
+                            <i class="bi bi-discord"
+                                style="font-size: 1.8rem; color: var(--text-light); transition: all 0.3s ease;"></i>
+                        </a>
+                        <a href="https://twitter.com/votre-compte" target="_blank" title="Twitter">
+                            <i class="bi bi-twitter"
+                                style="font-size: 1.8rem; color: var(--text-light); transition: all 0.3s ease;"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Liens rapides -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="footer-link">Accueil</a></li>
+                        <li class="mb-2"><a href="#about" class="footer-link">À propos</a></li>
+                        <li class="mb-2"><a href="#download" class="footer-link">Télécharger</a></li>
+                        <li class="mb-2"><a href="#credits" class="footer-link">Crédits</a></li>
+                        <li class="mb-2"><a href="Galery/index.html" class="footer-link">Galerie</a></li>
+                    </ul>
+                </div>
+
+                <!-- Téléchargements -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">Téléchargements</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-windows me-2"></i>Windows
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-apple me-2"></i>macOS
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-ubuntu me-2"></i>Linux
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-google-play me-2"></i>Android
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-apple me-2"></i>iOS
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support et communauté -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">Communauté</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="commu/index.html" class="footer-link">
+                                <i class="bi bi-people me-2"></i>Communauté
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="Cours/index.html" class="footer-link">
+                                <i class="bi bi-book me-2"></i>Articles & Cours
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-bug me-2"></i>Signaler un bug
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-question-circle me-2"></i>Support
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="footer-link">
+                                <i class="bi bi-star me-2"></i>Évaluer le jeu
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ligne de séparation -->
+            <hr style="border-color: var(--primary-color); opacity: 0.3; margin: 2rem 0;">
+
+            <!-- Copyright et informations légales -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 text-muted">
+                        &copy; 2024 Appel The Adventure. Tous droits réservés.
+                        <br>
+                        <small>Inspiré par le travail de <a href="https://scratch.mit.edu/users/griffpatch/"
+                                target="_blank" style="color: var(--secondary-color);">Griffpatch</a></small>
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-md-end justify-content-start flex-wrap gap-3 mt-3 mt-md-0">
+                        <a href="#" class="footer-link small">Politique de confidentialité</a>
+                        <a href="#" class="footer-link small">Conditions d'utilisation</a>
+                        <a href="#" class="footer-link small">Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badge "Made with Godot" -->
+            <div class="text-center mt-4">
+                <div class="d-inline-flex align-items-center px-3 py-2"
+                    style="background: rgba(0, 212, 255, 0.1); border-radius: 25px; border: 1px solid rgba(0, 212, 255, 0.3);">
+                    <i class="bi bi-code-square me-2" style="color: var(--primary-color);"></i>
+                    <span class="small" style="color: var(--text-light);">Développé avec Godot Engine</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Slider d'images hero
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 4000);
+
+        // Smooth scroll pour la navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Effet parallax léger sur le hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+
+</html>
