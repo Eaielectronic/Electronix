@@ -434,7 +434,8 @@
             <div class="hero-slide" style="background-image: url('Titre.png')"></div>
         </div>
         <div class="hero-content">
-            <img src="Titre.png" alt="Appel The Adventure" class="hero-logo mb-4" style="max-width: 600px; width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));">
+            <img src="Titre.png" alt="Appel The Adventure" class="hero-logo mb-4"
+                style="max-width: 600px; width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));">
             <p class="hero-subtitle">Une aventure épique repensée avec Godot Engine</p>
             <p class="mb-4">Découvrez la version révolutionnaire de notre jeu, entièrement recréée avec Godot pour une
                 expérience fluide et professionnelle sur toutes les plateformes.</p>
@@ -501,75 +502,87 @@
     <!-- Section Téléchargements -->
     <section id="download" class="download-section">
         <div class="container">
-            <h2 class="section-title fade-in">Téléchargez sur Votre Plateforme</h2>
-            <p class="text-center mb-5 fade-in">Disponible sur toutes les plateformes principales pour une expérience
-                optimale</p>
+            <h2 class="section-title fade-in">Télécharger le Jeu</h2>
+            <p class="text-center mb-5 fade-in">Disponible sur toutes les plateformes</p>
 
-            <div class="download-grid fade-in">
-                <div class="download-card">
-                    <div class="platform-icon">
-                        <i class="bi bi-windows"></i>
+            <div class="row justify-content-center fade-in">
+                <div class="col-lg-8">
+                    <div class="download-main-card p-4 mb-4"
+                        style="background: rgba(255, 255, 255, 0.05); border: 2px solid var(--primary-color); border-radius: 20px; text-align: center;">
+                        <h3 class="mb-4" style="color: var(--primary-color);">Version Complète</h3>
+                        <p class="mb-4">Téléchargez la version complète d'Appel The Adventure, optimisée avec Godot
+                            Engine</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <button class="btn btn-futuristic w-100">
+                                    <i class="bi bi-windows me-2"></i>Windows
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-futuristic w-100">
+                                    <i class="bi bi-apple me-2"></i>macOS
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-futuristic w-100">
+                                    <i class="bi bi-ubuntu me-2"></i>Linux
+                                </button>
+                            </div>
+                        </div>
+
+                        <hr style="border-color: var(--primary-color); opacity: 0.3; margin: 2rem 0;">
+
+                        <h4 class="mb-3" style="color: var(--secondary-color);">Mobile & Web</h4>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <button class="btn btn-futuristic w-100">
+                                    <i class="bi bi-google-play me-2"></i>Android
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-futuristic w-100">
+                                    <i class="bi bi-apple me-2"></i>iOS
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-futuristic w-100">
+                                    <i class="bi bi-play-fill me-2"></i>Jouer en ligne
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <h4>Windows</h4>
-                    <p>Compatible Windows 10/11</p>
-                    <button class="btn btn-futuristic mt-3">
-                        <i class="bi bi-download me-2"></i>Télécharger .exe
-                    </button>
                 </div>
+            </div>
 
-                <div class="download-card">
-                    <div class="platform-icon">
-                        <i class="bi bi-apple"></i>
+            <!-- Informations système -->
+            <div class="row mt-5 fade-in">
+                <div class="col-md-6">
+                    <div class="info-card p-3" style="background: rgba(255, 255, 255, 0.03); border-radius: 15px;">
+                        <h5 style="color: var(--primary-color);"><i class="bi bi-info-circle me-2"></i>Configuration
+                            requise</h5>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle me-2" style="color: var(--secondary-color);"></i>Windows
+                                10/11, macOS 10.14+, Ubuntu 18.04+</li>
+                            <li><i class="bi bi-check-circle me-2" style="color: var(--secondary-color);"></i>2 GB RAM
+                                minimum</li>
+                            <li><i class="bi bi-check-circle me-2" style="color: var(--secondary-color);"></i>500 MB
+                                d'espace libre</li>
+                        </ul>
                     </div>
-                    <h4>macOS</h4>
-                    <p>Support Intel & Apple Silicon</p>
-                    <button class="btn btn-futuristic mt-3">
-                        <i class="bi bi-download me-2"></i>Télécharger .dmg
-                    </button>
                 </div>
-
-                <div class="download-card">
-                    <div class="platform-icon">
-                        <i class="bi bi-ubuntu"></i>
+                <div class="col-md-6">
+                    <div class="info-card p-3" style="background: rgba(255, 255, 255, 0.03); border-radius: 15px;">
+                        <h5 style="color: var(--primary-color);"><i class="bi bi-star me-2"></i>Nouveautés</h5>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle me-2"
+                                    style="color: var(--secondary-color);"></i>Performances optimisées avec Godot</li>
+                            <li><i class="bi bi-check-circle me-2" style="color: var(--secondary-color);"></i>Support
+                                manettes et tactile</li>
+                            <li><i class="bi bi-check-circle me-2" style="color: var(--secondary-color);"></i>Graphismes
+                                améliorés</li>
+                        </ul>
                     </div>
-                    <h4>Linux</h4>
-                    <p>AppImage & packages .deb</p>
-                    <button class="btn btn-futuristic mt-3">
-                        <i class="bi bi-download me-2"></i>Télécharger Linux
-                    </button>
-                </div>
-
-                <div class="download-card">
-                    <div class="platform-icon">
-                        <i class="bi bi-phone"></i>
-                    </div>
-                    <h4>Android</h4>
-                    <p>Google Play Store</p>
-                    <button class="btn btn-futuristic mt-3">
-                        <i class="bi bi-google-play me-2"></i>Play Store
-                    </button>
-                </div>
-
-                <div class="download-card">
-                    <div class="platform-icon">
-                        <i class="bi bi-phone"></i>
-                    </div>
-                    <h4>iOS</h4>
-                    <p>App Store</p>
-                    <button class="btn btn-futuristic mt-3">
-                        <i class="bi bi-apple me-2"></i>App Store
-                    </button>
-                </div>
-
-                <div class="download-card">
-                    <div class="platform-icon">
-                        <i class="bi bi-globe"></i>
-                    </div>
-                    <h4>Web</h4>
-                    <p>Jouez directement en ligne</p>
-                    <button class="btn btn-futuristic mt-3">
-                        <i class="bi bi-play-fill me-2"></i>Jouer en ligne
-                    </button>
                 </div>
             </div>
         </div>
@@ -581,7 +594,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 mb-4 fade-in">
                     <div class="credit-card">
-                        <img src="grifp.png" alt="Griffpatch" class="credit-avatar">
+                        <div class="credit-avatar d-flex align-items-center justify-content-center"
+                            style="background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));">
+                            <i class="bi bi-person-workspace" style="font-size: 3rem; color: white;"></i>
+                        </div>
                         <h4>Griffpatch</h4>
                         <p class="text-muted">Créateur Original</p>
                         <p>Un immense merci à Griffpatch pour son travail inspirant sur Scratch qui a servi de base à
@@ -594,7 +610,10 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 fade-in">
                     <div class="credit-card">
-                        <img src="Stand.png" alt="Notre équipe" class="credit-avatar">
+                        <div class="credit-avatar d-flex align-items-center justify-content-center"
+                            style="background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));">
+                            <i class="bi bi-people-fill" style="font-size: 3rem; color: white;"></i>
+                        </div>
                         <h4>Notre Équipe</h4>
                         <p class="text-muted">Développement Godot</p>
                         <p>Équipe passionnée qui a recréé et amélioré l'expérience originale avec Godot Engine.</p>
